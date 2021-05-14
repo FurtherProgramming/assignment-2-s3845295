@@ -23,10 +23,11 @@ public class LoginController implements Initializable {
 
     // Check database connection
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        if (loginModel.isDbConnected()){
+    public void initialize(URL location, ResourceBundle resources) {
+        if (loginModel.isDbConnected()) {
             isConnected.setText("Connected");
-        }else{
+        }
+        else {
             isConnected.setText("Not Connected");
         }
 
@@ -37,22 +38,17 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent event){
 
         try {
-            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
+            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())) {
 
                 isConnected.setText("Logged in successfully");
-            }else{
+            }
+            else {
                 isConnected.setText("username and password is incorrect");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
-    //11.2.3 big sur
-
 
 
 }

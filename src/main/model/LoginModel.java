@@ -43,14 +43,14 @@ public class LoginModel {
             if (resultSet.next()) {
                 return true;
             }
-            else{
+            else {
                 return false;
             }
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             return false;
-        }finally {
+        }
+        finally {
            preparedStatement.close();
            resultSet.close();
         }
