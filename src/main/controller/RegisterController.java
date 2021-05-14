@@ -46,15 +46,10 @@ public class RegisterController implements Initializable {
     public void Register(ActionEvent event) {
         try {
             String name = txtName.getText();
-            System.out.println(name);
             String surname = txtSurname.getText();
-            System.out.println(surname);
             int age = Integer.parseInt(intAge.getText());
-            System.out.println(age);
             String username = txtUsername.getText();
-            System.out.println(username);
             String password = txtPassword.getText();
-            System.out.println(password);
 
             registerModel.registerToDb(name, surname, age, username, password);
         }

@@ -34,7 +34,6 @@ public class RegisterModel {
         PreparedStatement preparedStatement = null;
 
         String sqlINSERT = "INSERT INTO Employee (name, surname, age, username, password) VALUES (?,?,?,?,?)";
-        System.out.println("sqlINSERT: " + sqlINSERT);
 
         preparedStatement = connection.prepareStatement(sqlINSERT);
         preparedStatement.setString(1, name);
