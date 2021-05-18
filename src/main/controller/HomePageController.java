@@ -1,20 +1,22 @@
 package main.controller;
 
 import javafx.event.ActionEvent;
+import main.ui.SceneHelper;
+
 import java.io.IOException;
 
 public class HomePageController {
     
-    SceneController sceneController = new SceneController();
+//    SceneController sceneController = new SceneController();
 
     public void loginButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO LOGIN.FXML
-        sceneController.switchScene("login", event);
+        SceneHelper.switchScene("login", event);
     }
     
     public void registerButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO REGISTER.FXML
-        sceneController.switchScene("register", event);
+        SceneHelper.switchScene("register", event);
     }
 
 

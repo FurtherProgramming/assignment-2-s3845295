@@ -5,32 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.TableViewController">
+<AnchorPane focusTraversable="true" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.TableViewController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Account">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="View Account" />
-                        <MenuItem mnemonicParsing="false" text="View Bookings" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Admin">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Manage Lockdown" />
-                        <MenuItem mnemonicParsing="false" text="View Employees" />
-                        <MenuItem mnemonicParsing="false" text="View Admins" />
-                        <MenuItem mnemonicParsing="false" text="View Bookings" />
-                        <MenuItem mnemonicParsing="false" text="Generate Report" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
+      <BorderPane focusTraversable="true" prefHeight="200.0" prefWidth="200.0">
          <center>
-            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" pickOnBounds="false" prefHeight="400.0" BorderPane.alignment="CENTER">
+            <GridPane alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="400.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="137.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="136.0" />
@@ -43,22 +22,22 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Rectangle accessibleText="1" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" mouseTransparent="true" onMouseClicked="#handleMouseClick" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="185.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="table1Label" alignment="CENTER" contentDisplay="CENTER" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Label fx:id="table2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="69.0" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Label fx:id="table3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Label fx:id="table4Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Label fx:id="table5Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Label fx:id="table6Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="table7Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="table8Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="1" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="185.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="table1Label" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="table2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="table3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="table4Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="table5Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="table6Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="table7Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="table8Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -79,6 +58,32 @@
                </BorderPane.margin>
             </FlowPane>
          </bottom>
+         <top>
+            <FlowPane BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar minWidth="200.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Account">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="View Account" />
+                              <MenuItem mnemonicParsing="false" text="View Bookings" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Admin">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Manage Lockdown" />
+                              <MenuItem mnemonicParsing="false" text="View Employees" />
+                              <MenuItem mnemonicParsing="false" text="View Admins" />
+                              <MenuItem mnemonicParsing="false" text="View Bookings" />
+                              <MenuItem mnemonicParsing="false" text="Generate Report" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <DatePicker minWidth="240.0" />
+               </children>
+            </FlowPane>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

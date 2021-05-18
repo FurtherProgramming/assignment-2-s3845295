@@ -1,9 +1,6 @@
 package main.model;
 
-import javafx.scene.Scene;
 import main.SQLConnection;
-import main.controller.SceneController;
-import org.sqlite.SQLiteConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

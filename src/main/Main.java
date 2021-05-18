@@ -17,7 +17,7 @@ public class Main extends Application {
         primaryStage.show();
 
         // PRINT ALL MOUSE EVENTS
-        scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
+//        scene.addEventFilter(MouseEvent.ANY, e -> System.out.println( e));
     }
 
 

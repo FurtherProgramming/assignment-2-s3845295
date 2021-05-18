@@ -1,4 +1,4 @@
-package main.controller;
+package main.ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,17 +9,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.Node;
 
-public class SceneController {
+public class SceneHelper {
     
-    public SceneController() {
+    public SceneHelper() {
 
     }
+    //TODO
+    // MAKE SINGLETON PATTERN SO THERE's ONLY ONE INSTANCE
     
-    public void switchScene(String sceneName, ActionEvent event) throws IOException {
+    public static void switchScene(String sceneName, ActionEvent event) throws IOException {
 
         sceneName = "../ui/" + sceneName +  ".fxml";
 
-        Parent root = FXMLLoader.load(getClass().getResource(sceneName));
+        Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
         Scene scene = new Scene(root);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

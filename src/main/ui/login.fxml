@@ -13,7 +13,7 @@
             </Label>
       <TextField fx:id="txtUsername" layoutX="78.0" layoutY="55.0" promptText="Username" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="55.0" />
       <PasswordField fx:id="txtPassword" layoutX="78.0" layoutY="100.0" promptText="Password" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="100.0" />
-      <Button defaultButton="true" layoutX="126.0" layoutY="140.0" mnemonicParsing="false" onAction="#Login" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="140.0">
+      <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="126.0" layoutY="91.0" mnemonicParsing="false" onAction="#Login" prefHeight="27.0" prefWidth="75.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="140.0">
          <effect>
             <Lighting bumpInput="$null">
                <light>

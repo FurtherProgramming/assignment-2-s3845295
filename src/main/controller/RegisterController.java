@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
 import main.model.RegisterModel;
+import main.ui.SceneHelper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,11 +17,9 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable {
 
     public RegisterModel registerModel = new RegisterModel();
-    SceneController sceneController = new SceneController();
 
     @FXML
     private Label isConnected;
-    
     @FXML
     public TextField txtName;
     @FXML
@@ -60,7 +59,7 @@ public class RegisterController implements Initializable {
             e.printStackTrace();
         }
         finally {
-            sceneController.switchScene("tableView", event);
+            SceneHelper.switchScene("tableView", event);
         }
     }
 

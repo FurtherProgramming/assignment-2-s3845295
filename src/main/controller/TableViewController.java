@@ -1,14 +1,12 @@
 package main.controller;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-import javafx.scene.input.KeyEvent;
+
 import javafx.scene.input.MouseEvent;
+
 import main.model.TableViewModel;
 
 import java.io.IOException;
@@ -17,6 +15,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import main.ui.SceneHelper;
+
+
 
 import javafx.scene.Node;
 
@@ -24,11 +25,11 @@ import javafx.scene.Node;
 public class TableViewController implements Initializable {
     
     
-    private SceneController sceneController = new SceneController();
     private TableViewModel tableViewModel = new TableViewModel();
     
     private Node selectedTable;
     private LocalDate selectedDate;
+
 
     @FXML
     private Label table1Label;
@@ -68,18 +69,6 @@ public class TableViewController implements Initializable {
     }
 
 
-//     MouseEvent IS BEING LISTENED TO BY PANE NOT RECTANGLE
-    @FXML
-    public void handleTableClick(MouseEvent event) {
-
-        Node node = (Node)event.getSource();
-        node.setRotate(node.getRotate()+20);
-        System.out.println(node);
-
-        // ONLY GREEN TABLES SHOULD BE ALLOWED TO BE SELECTED, IF STATUS!=GREEN, DISABLE NODE
-        selectedTable = node;
-    }
-
     @FXML
     public void handleBookButton(ActionEvent event) throws SQLException {
         int employeeID = -1;
@@ -92,29 +81,35 @@ public class TableViewController implements Initializable {
     
     @FXML
     public void handleLogOut(ActionEvent event) throws IOException {
-        sceneController.switchScene("homePage", event);
+        SceneHelper.switchScene("homePage", event);
     }
 
 
 
-    // TESTING
     @FXML
     public void handleMouseClick(MouseEvent event) {
 
-        Node node = (Node)event.getSource();
-        node.setRotate(node.getRotate()+20);
+        Node node = (Node) event.getSource();
+        selectedTable = node;
+
     }
-
-
-    public void rotate(ActionEvent event) {
-
-        Node node = (Node)event.getSource();
-        node.setRotate(node.getRotate()+20);
-        System.out.println(node);
-    }
-
-
     
+    @FXML 
+    public void handleMouseEnter(MouseEvent event) {
+        Node node = (Node)event.getSource();
+        
+        node.setScaleX(1.1);
+        node.setScaleY(1.1);
+    }
+    @FXML
+    public void handleMouseExit(MouseEvent event) {
+        Node node = (Node)event.getSource();
+
+        node.setScaleX(1);
+        node.setScaleY(1);
+    }
+
+
 
 
 }
