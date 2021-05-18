@@ -8,12 +8,15 @@ import javafx.event.ActionEvent;
 
 import main.model.RegisterModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
+
     public RegisterModel registerModel = new RegisterModel();
+    SceneController sceneController = new SceneController();
 
     @FXML
     private Label isConnected;
@@ -43,7 +46,7 @@ public class RegisterController implements Initializable {
         }
     }
     
-    public void Register(ActionEvent event) {
+    public void Register(ActionEvent event) throws IOException {
         try {
             String name = txtName.getText();
             String surname = txtSurname.getText();
@@ -55,6 +58,9 @@ public class RegisterController implements Initializable {
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            sceneController.switchScene("tableView", event);
         }
     }
 

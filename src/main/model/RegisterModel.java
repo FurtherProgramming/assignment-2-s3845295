@@ -2,6 +2,7 @@ package main.model;
 
 import main.SQLConnection;
 import main.controller.RegisterController;
+import main.controller.SceneController;
 import org.sqlite.SQLiteConnection;
 
 import java.sql.Connection;
@@ -46,5 +47,4 @@ public class RegisterModel {
         preparedStatement.close();
 
     }
-
 }
