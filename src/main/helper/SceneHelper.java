@@ -1,4 +1,4 @@
-package main.ui;
+package main.helper;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +14,7 @@ public class SceneHelper {
     public SceneHelper() {
 
     }
-    //TODO
-    // MAKE SINGLETON PATTERN SO THERE's ONLY ONE INSTANCE
+
     
     public static void switchScene(String sceneName, ActionEvent event) throws IOException {
 
@@ -24,8 +23,8 @@ public class SceneHelper {
         Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
         Scene scene = new Scene(root);
 
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene((scene));
+        // SWITCH primaryStage TO scene
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).setScene(scene);
     }
 
 

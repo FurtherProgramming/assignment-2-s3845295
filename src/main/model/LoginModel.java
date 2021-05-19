@@ -1,6 +1,7 @@
 package main.model;
 
 import main.SQLConnection;
+import main.helper.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,17 +30,19 @@ public class LoginModel {
     }
 
     public Boolean isLogin(String user, String pass) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet=null;
         String query = "select * from employee where username = ? and password= ?";
-        try {
-
-            preparedStatement = connection.prepareStatement(query);
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, pass);
 
-            resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+
+                System.out.println("SETTING USER");
+                setUser(user);
+
                 return true;
             }
             else {
@@ -49,9 +52,31 @@ public class LoginModel {
         catch (Exception e) {
             return false;
         }
-        finally {
-           preparedStatement.close();
-           resultSet.close();
+    }
+    
+    private void setUser(String userString) throws SQLException {
+
+        User user = User.getUser();
+        String sqlQUERY = "SELECT * FROM Employee WHERE username = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+
+            preparedStatement.setString(1, userString);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // WRITE TO USER SINGLETON
+            user.setUserID(resultSet.getInt(1));
+            user.setName(resultSet.getString(2));
+            user.setSurname(resultSet.getString(3));
+            user.setAge(resultSet.getInt(4));
+            user.setUsername(resultSet.getString(5));
+            user.setPassword(resultSet.getString(6));
+
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

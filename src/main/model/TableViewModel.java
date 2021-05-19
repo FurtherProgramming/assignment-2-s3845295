@@ -22,15 +22,19 @@ public class TableViewModel {
     }
     
     public void bookTable(int employeeID, int tableID, LocalDate date) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        String sqlINSERT = "INSERT INTO Booking (tableID, date, employeeID) VALUES (?,?,?)";
-
-        preparedStatement = connection.prepareStatement(sqlINSERT);
-
-        Booking booking = new Booking(employeeID, tableID, date);
-        preparedStatement = booking.getPreparedStatement(preparedStatement);
-
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
+        System.out.println("employeeID: " + employeeID);
+        System.out.println("tableID: " + tableID);
+        System.out.println("date: " + date);
+        
+//        PreparedStatement preparedStatement = null;
+//        String sqlINSERT = "INSERT INTO Booking (tableID, date, employeeID) VALUES (?,?,?)";
+//
+//        preparedStatement = connection.prepareStatement(sqlINSERT);
+//
+//        Booking booking = new Booking(employeeID, tableID, date);
+//        preparedStatement = booking.getPreparedStatement(preparedStatement);
+//
+//        preparedStatement.executeUpdate();
+//        preparedStatement.close();
     }
 }

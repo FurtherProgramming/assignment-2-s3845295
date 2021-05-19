@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
 import main.model.RegisterModel;
-import main.ui.SceneHelper;
+import main.helper.SceneHelper;
 
 import java.io.IOException;
 import java.net.URL;

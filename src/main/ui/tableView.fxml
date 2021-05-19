@@ -22,14 +22,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Rectangle accessibleText="1" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="185.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="1" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="4" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="6" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="2" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="7" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="3" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="5" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="185.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Rectangle accessibleText="8" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Label fx:id="table1Label" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Label fx:id="table2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Label fx:id="table3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
@@ -44,20 +44,6 @@
                </BorderPane.margin>
             </GridPane>
          </center>
-         <bottom>
-            <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" text="Book" />
-                  <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out">
-                     <FlowPane.margin>
-                        <Insets />
-                     </FlowPane.margin></Button>
-               </children>
-               <BorderPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="27.0" />
-               </BorderPane.margin>
-            </FlowPane>
-         </bottom>
          <top>
             <FlowPane BorderPane.alignment="CENTER">
                <children>
@@ -80,10 +66,37 @@
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <DatePicker minWidth="240.0" />
+                  <DatePicker fx:id="datePicker" minWidth="240.0" onAction="#handleDatePick" />
                </children>
             </FlowPane>
          </top>
+         <bottom>
+            <FlowPane alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="status" alignment="BOTTOM_RIGHT" text="Status">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" vgap="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleBookButton" text="Book" />
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </Button>
+                     </children>
+                  </FlowPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" />
+               </BorderPane.margin>
+            </FlowPane>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

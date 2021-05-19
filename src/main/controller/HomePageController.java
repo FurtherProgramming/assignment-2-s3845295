@@ -1,7 +1,7 @@
 package main.controller;
 
 import javafx.event.ActionEvent;
-import main.ui.SceneHelper;
+import main.helper.SceneHelper;
 
 import java.io.IOException;
 
