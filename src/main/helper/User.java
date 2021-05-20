@@ -12,6 +12,7 @@ public class User {
     private int _age;
     private String _username;
     private String _password;
+    private boolean _admin;
 
     private User() {
 
@@ -59,6 +60,11 @@ public class User {
     public void setPassword(String _password) {
         this._password = _password;
     }
-
+    public boolean isAdmin(){
+        return _admin;
+    }
+    public void setAdmin(boolean _admin) {
+        this._admin = _admin;
+    }
 
 }

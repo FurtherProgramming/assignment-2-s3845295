@@ -30,14 +30,14 @@
                   <Rectangle fx:id="table3Rectangle" accessibleText="3" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="19.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Rectangle fx:id="table5Rectangle" accessibleText="5" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="185.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Rectangle fx:id="table8Rectangle" accessibleText="8" arcHeight="5.0" arcWidth="5.0" fill="#68ba66" height="120.0" layoutX="10.0" layoutY="351.0" onMouseClicked="#handleMouseClick" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="120.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="table1Label" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Label fx:id="table2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Label fx:id="table3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Label fx:id="table4Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Label fx:id="table5Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Label fx:id="table6Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="table7Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Label fx:id="table8Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" mouseTransparent="true" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="table1Label" alignment="CENTER" contentDisplay="CENTER" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="table2Label" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="table3Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="table4Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="table5Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="table6Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="table7Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="table8Label" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="69.0" maxWidth="80.0" mouseTransparent="true" text="Label" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -47,7 +47,7 @@
          <top>
             <FlowPane BorderPane.alignment="CENTER">
                <children>
-                  <MenuBar minWidth="200.0">
+                  <MenuBar fx:id="adminMenuBar" minWidth="200.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="Account">
                         <items>
@@ -55,12 +55,11 @@
                               <MenuItem mnemonicParsing="false" text="View Bookings" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Admin">
+                      <Menu fx:id="adminMenu" disable="true" mnemonicParsing="false" text="Admin">
                         <items>
+                              <MenuItem mnemonicParsing="false" onAction="#handleMenuItemManageBookings" text="Manage Bookings" />
                           <MenuItem mnemonicParsing="false" text="Manage Lockdown" />
-                              <MenuItem mnemonicParsing="false" text="View Employees" />
-                              <MenuItem mnemonicParsing="false" text="View Admins" />
-                              <MenuItem mnemonicParsing="false" text="View Bookings" />
+                              <MenuItem mnemonicParsing="false" text="Manage Employees" />
                               <MenuItem mnemonicParsing="false" text="Generate Report" />
                         </items>
                       </Menu>

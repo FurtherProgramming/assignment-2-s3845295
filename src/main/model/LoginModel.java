@@ -72,6 +72,8 @@ public class LoginModel {
             user.setAge(resultSet.getInt(4));
             user.setUsername(resultSet.getString(5));
             user.setPassword(resultSet.getString(6));
+            user.setAdmin(resultSet.getBoolean(7));
+            System.out.println("username: " + resultSet.getString(5) + " admin " + resultSet.getBoolean(7));
 
         }
         catch (Exception e) {

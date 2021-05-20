@@ -2,6 +2,7 @@ package main.model;
 
 import main.SQLConnection;
 import main.datastructure.Booking;
+import main.helper.User;
 import org.sqlite.SQLiteConnection;
 
 import main.datastructure.Table;
@@ -43,8 +44,6 @@ public class TableViewModel {
     
     public void updateTableStatus(Table table, int userID, LocalDate date) {
         // update table status enum according to database
-
-        boolean tableBooked, tableLocked, tableUserBooked;
         
         table.setStatus(Status.AVAILABLE);
 
@@ -55,16 +54,24 @@ public class TableViewModel {
             preparedStatement.setInt(1, table.getTableID());
             preparedStatement.setDate(2, Date.valueOf(date));
             ResultSet resultSet = preparedStatement.executeQuery();
+
             // CHECK FOR TABLE BOOKING ON DATE
             if (resultSet.next()) {
+
                 // CHECK IF THE USER HAS BOOKED IT
                 if (resultSet.getInt(4) == userID) {
-                    table.setStatus(Status.USERBOOKED);
-//                    System.out.println("TableModel.updateTableStatus(): " + table.getLabel() + "USERBOOKED");
+
+                    // CHECK IF BOOKING IS PENDING
+                    if (!resultSet.getBoolean(5)) {
+                        table.setStatus(Status.PENDING);
+                    }
+                    // IF CONFIRMED:
+                    else {
+                        table.setStatus(Status.USERBOOKED);
+                    }
                 }
                 else {
                     table.setStatus(Status.BOOKED);
-//                    System.out.println("TableModel.updateTableStatus(): " + table.getLabel() + "BOOKED");
                 }
             }
         }
@@ -78,5 +85,9 @@ public class TableViewModel {
         boolean bookedPreviously = false;
         // connect to booking table  and check if last booking by employee was this table: return true.
         return bookedPreviously;
+    }
+    
+    public boolean isUserAdmin(User user) {
+        return user.isAdmin();
     }
 }

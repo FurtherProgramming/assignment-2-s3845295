@@ -10,6 +10,8 @@ import java.io.IOException;
 import javafx.scene.Node;
 
 public class SceneHelper {
+
+    private static Stage primaryStage;
     
     public SceneHelper() {
 
@@ -24,7 +26,11 @@ public class SceneHelper {
         Scene scene = new Scene(root);
 
         // SWITCH primaryStage TO scene
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).setScene(scene);
+        if (primaryStage == null) {
+            primaryStage = ((Stage)((Node)event.getSource()).getScene().getWindow());
+        }
+        primaryStage.setScene(scene);
+       
     }
 
 

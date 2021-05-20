@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 
 import main.datastructure.Table;
 import main.datastructure.Table.Status;
+import main.helper.CurrentDate;
 import main.helper.User;
 import main.model.TableViewModel;
 import main.helper.SceneHelper;
@@ -40,14 +43,19 @@ public class TableViewController implements Initializable {
     private final Color colourSelected = Color.rgb(188,227,143);
     private final Color colourBooked = Color.rgb(255,137,137);
     private final Color colourLocked = Color.rgb(255,173,111);
+    private final Color colourPrevBooked = Color.rgb(171, 120, 168);
     private final Color colourUserBooked = Color.rgb(109,167,167);
+    private final Color colourPending = Color.rgb(190,190,190);
 
     private HashMap<Status, Color> statusColourMap = new HashMap<Status, Color>();
     private HashMap<Rectangle, Table> rectangleTableMap = new HashMap<Rectangle, Table>();
+    private HashMap<Status, String> statusTextMap = new HashMap<Status, String>();
 
     
     @FXML
     private Label statusLabel;
+    @FXML
+    private Menu adminMenu;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -101,6 +109,7 @@ public class TableViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         table1Label.setText("Table 1");
         table2Label.setText("Table 2");
         table3Label.setText("Table 3");
@@ -109,7 +118,6 @@ public class TableViewController implements Initializable {
         table6Label.setText("Table 6");
         table7Label.setText("Table 7");
         table8Label.setText("Table 8");
-        
 
         table1 = new Table (1, table1Label, table1Rectangle);
         table2 = new Table (2, table2Label, table2Rectangle);
@@ -123,10 +131,18 @@ public class TableViewController implements Initializable {
         tableArray = new Table[]{table1, table2, table3, table4, table5, table6, table7, table8};
 
         initialiseStatusColourMap();
+        initialiseStatusTextMap();
         initialiseRectangleTableMap();
 
         setBookButtonDisable(true);
+
+        if (tableViewModel.isUserAdmin(user)) {
+            System.out.println("USERADMIN");
+            setAdminDisable(false);
+        }
         
+        datePicker.setValue(CurrentDate.getCurrentDate());
+        selectedDate = CurrentDate.getCurrentDate();
         refresh();
         
     }
@@ -136,8 +152,18 @@ public class TableViewController implements Initializable {
         statusColourMap.put(Status.AVAILABLE, colourAvailable);
         statusColourMap.put(Status.BOOKED, colourBooked);
         statusColourMap.put(Status.LOCKED, colourLocked);
-        statusColourMap.put(Status.PREVBOOKED, colourBooked);
+        statusColourMap.put(Status.PREVBOOKED, colourPrevBooked);
         statusColourMap.put(Status.USERBOOKED, colourUserBooked);
+        statusColourMap.put(Status.PENDING, colourPending);
+    }
+
+    private void initialiseStatusTextMap() {
+        statusTextMap.put(Status.BOOKED, "Not Available");
+        statusTextMap.put(Status.LOCKED, "Locked");
+        statusTextMap.put(Status.PREVBOOKED, "Table was previously booked");
+        statusTextMap.put(Status.USERBOOKED, "Confirmed Booking");
+        statusTextMap.put(Status.PENDING, "Pending Confirmation");
+
     }
     
     private void initialiseRectangleTableMap() {
@@ -150,16 +176,22 @@ public class TableViewController implements Initializable {
         rectangleTableMap.put(table7Rectangle, table7);
         rectangleTableMap.put(table8Rectangle, table8);
     }
+
+    private void setBookButtonDisable(boolean disable) {
+        bookButton.setDisable(disable);
+    }
     
+    private void setAdminDisable(boolean disable) {
+        adminMenu.setDisable(disable);
+    }
+
     private void updateLabelText(Table table) {
-        String statusText = String.valueOf(table.getStatus());
         if (table.getStatus() != Status.AVAILABLE) {
-            table.getLabel().setText(statusText);
+            table.getLabel().setText(statusTextMap.get(table.getStatus()));
         }
         else if (table.getStatus() == Status.AVAILABLE) {
             table.getLabel().setText("Table " + table.getTableID());
         }
-//        System.out.println("Table " + table.getTableID() + " status: " + status + " label: " + table.getLabel());
     }
 
     private void updateRectangleColour(Table table) {
@@ -175,9 +207,7 @@ public class TableViewController implements Initializable {
         }
     }
     
-    private void setBookButtonDisable(boolean disable) {
-        bookButton.setDisable(disable);
-    }
+
 
     private void refresh() {
         selectedTable = null;
@@ -261,6 +291,11 @@ public class TableViewController implements Initializable {
 
         node.setScaleX(1);
         node.setScaleY(1);
+    }
+    
+    //ADMIN MENU
+    public void handleMenuItemManageBookings(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("manageBookings", event);
     }
 
 

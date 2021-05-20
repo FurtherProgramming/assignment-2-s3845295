@@ -15,7 +15,8 @@ public class Table {
         BOOKED,
         LOCKED,
         PREVBOOKED,
-        USERBOOKED
+        USERBOOKED,
+        PENDING
     }
 
     public Table(int tableID, Label label, Rectangle rectangle) {
