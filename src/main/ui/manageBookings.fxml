@@ -10,7 +10,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <ListView fx:id="bookingListView" prefHeight="330.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ListView fx:id="bookingListView" onMouseClicked="#handleListViewSelection" prefHeight="330.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
@@ -20,8 +20,9 @@
                <children>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="Accept" />
-                        <Button mnemonicParsing="false" text="Reject" />
+                      <Button mnemonicParsing="false" onAction="#handleAcceptButton" text="Accept" />
+                        <Button mnemonicParsing="false" onAction="#handleRejectButton" text="Reject" />
+                        <Button mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
                     </buttons>
                      <opaqueInsets>
                         <Insets />
