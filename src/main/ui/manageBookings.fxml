@@ -18,6 +18,7 @@
                </children></AnchorPane>
             <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="200.0" prefWidth="200.0">
                <children>
+                  <Label fx:id="statusLabel" alignment="TOP_LEFT" text="Label" />
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#handleAcceptButton" text="Accept" />

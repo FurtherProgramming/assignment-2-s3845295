@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -34,6 +35,8 @@ public class ManageBookingsController implements Initializable {
 
     @FXML
     ListView<String> bookingListView = new ListView<String>();
+    @FXML
+    Label statusLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,6 +54,13 @@ public class ManageBookingsController implements Initializable {
         System.out.println(bookingArrayList);
         
         populateBookingListView();
+        
+        if (bookingArrayList.size() == 0) {
+            statusLabel.setText("There are no bookings to accept/reject");
+        }
+        else {
+            statusLabel.setText("");
+        }
     }
 
     private void sceneRefresh(ActionEvent event) throws IOException {
@@ -71,7 +81,6 @@ public class ManageBookingsController implements Initializable {
             bookingListView.getItems().add(listString);
             listViewIndexBookingIDMap.put(listCount, (Integer)booking[0]);
             listCount++;
-//            System.out.println(listString);
 
         }
     }
