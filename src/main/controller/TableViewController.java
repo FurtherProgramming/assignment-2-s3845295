@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
@@ -49,6 +50,8 @@ public class TableViewController implements Initializable {
     private Label statusLabel;
     @FXML
     private DatePicker datePicker;
+    @FXML
+    private Button bookButton;
 
     @FXML
     private Label table1Label;
@@ -121,6 +124,8 @@ public class TableViewController implements Initializable {
 
         initialiseStatusColourMap();
         initialiseRectangleTableMap();
+
+        setBookButtonDisable(true);
         
         refresh();
         
@@ -163,15 +168,15 @@ public class TableViewController implements Initializable {
         table.getRectangle().setFill(statusColourMap.get(table.getStatus()));
     }
     
-    private void setRectangleDisable(Table table) {
+    private void updateRectangleDisable(Table table) {
         table.getRectangle().setDisable(false);
         if (table.getStatus() != Status.AVAILABLE) {
             table.getRectangle().setDisable(true);
         }
     }
     
-    private void setBookButtonDisable() {
-        
+    private void setBookButtonDisable(boolean disable) {
+        bookButton.setDisable(disable);
     }
 
     private void refresh() {
@@ -182,9 +187,10 @@ public class TableViewController implements Initializable {
             updateLabelText(table);
             updateRectangleColour(table);
 
-            setRectangleDisable(table);
+            updateRectangleDisable(table);
         }
 
+        setBookButtonDisable(true);
     }
 
     @FXML
@@ -238,6 +244,7 @@ public class TableViewController implements Initializable {
             selectedTable.getRectangle().setFill(statusColourMap.get(selectedTable.getStatus()));
         }
         selectedTable = table;
+        setBookButtonDisable(false);
     }
 
     // ANIMATE MOUSE HOVER

@@ -80,7 +80,7 @@
                   </Label>
                   <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" vgap="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleBookButton" text="Book" />
+                        <Button fx:id="bookButton" mnemonicParsing="false" onAction="#handleBookButton" text="Book" />
                         <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out">
                            <FlowPane.margin>
                               <Insets />
