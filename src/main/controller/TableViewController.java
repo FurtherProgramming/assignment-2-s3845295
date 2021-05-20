@@ -2,28 +2,27 @@ package main.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.event.ActionEvent;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 
-import javafx.scene.input.MouseEvent;
 
+import main.datastructure.Table;
+import main.datastructure.Table.Status;
 import main.helper.User;
 import main.model.TableViewModel;
+import main.helper.SceneHelper;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
-import main.helper.SceneHelper;
-
-
-
-import javafx.scene.Node;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
+import java.util.HashMap;
 
 
 public class TableViewController implements Initializable {
@@ -31,19 +30,25 @@ public class TableViewController implements Initializable {
     
     private TableViewModel tableViewModel = new TableViewModel();
 
-    private User user;
+    private User user = User.getUser();
     
-    private Node selectedTable;
+    private Table selectedTable;
     private LocalDate selectedDate;
     
-    Color colourAvailable = Color.rgb(104,186,102);
-    Color colourSelected = Color.rgb(188,227,143);
-    Color colourBooked = Color.rgb(255,137,137);
-    Color colourLocked = Color.rgb(255,173,111);
-    Color colourUserBooked = Color.rgb(109,167,167);
+    private final Color colourAvailable = Color.rgb(104,186,102);
+    private final Color colourSelected = Color.rgb(188,227,143);
+    private final Color colourBooked = Color.rgb(255,137,137);
+    private final Color colourLocked = Color.rgb(255,173,111);
+    private final Color colourUserBooked = Color.rgb(109,167,167);
 
+    private HashMap<Status, Color> statusColourMap = new HashMap<Status, Color>();
+    private HashMap<Rectangle, Table> rectangleTableMap = new HashMap<Rectangle, Table>();
+
+    
     @FXML
-    private Label status;
+    private Label statusLabel;
+    @FXML
+    private DatePicker datePicker;
 
     @FXML
     private Label table1Label;
@@ -61,9 +66,35 @@ public class TableViewController implements Initializable {
     private Label table7Label;
     @FXML
     private Label table8Label;
-
+    
     @FXML
-    private DatePicker datePicker;
+    private Rectangle table1Rectangle;
+    @FXML
+    private Rectangle table2Rectangle;
+    @FXML
+    private Rectangle table3Rectangle;
+    @FXML
+    private Rectangle table4Rectangle;
+    @FXML
+    private Rectangle table5Rectangle;
+    @FXML
+    private Rectangle table6Rectangle;
+    @FXML
+    private Rectangle table7Rectangle;
+    @FXML
+    private Rectangle table8Rectangle;
+    
+    Table table1;
+    Table table2;
+    Table table3;
+    Table table4;
+    Table table5;
+    Table table6;
+    Table table7;
+    Table table8;
+
+    private Table[] tableArray;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,39 +106,112 @@ public class TableViewController implements Initializable {
         table6Label.setText("Table 6");
         table7Label.setText("Table 7");
         table8Label.setText("Table 8");
+        
 
+        table1 = new Table (1, table1Label, table1Rectangle);
+        table2 = new Table (2, table2Label, table2Rectangle);
+        table3 = new Table (3, table3Label, table3Rectangle);
+        table4 = new Table (4, table4Label, table4Rectangle);
+        table5 = new Table (5, table5Label, table5Rectangle);
+        table6 = new Table (6, table6Label, table6Rectangle);
+        table7 = new Table (7, table7Label, table7Rectangle);
+        table8 = new Table (8, table8Label, table8Rectangle);
+
+        tableArray = new Table[]{table1, table2, table3, table4, table5, table6, table7, table8};
+
+        initialiseStatusColourMap();
+        initialiseRectangleTableMap();
         
         refresh();
+        
+    }
+
+    
+    private void initialiseStatusColourMap() {
+        statusColourMap.put(Status.AVAILABLE, colourAvailable);
+        statusColourMap.put(Status.BOOKED, colourBooked);
+        statusColourMap.put(Status.LOCKED, colourLocked);
+        statusColourMap.put(Status.PREVBOOKED, colourBooked);
+        statusColourMap.put(Status.USERBOOKED, colourUserBooked);
+    }
+    
+    private void initialiseRectangleTableMap() {
+        rectangleTableMap.put(table1Rectangle, table1);
+        rectangleTableMap.put(table2Rectangle, table2);
+        rectangleTableMap.put(table3Rectangle, table3);
+        rectangleTableMap.put(table4Rectangle, table4);
+        rectangleTableMap.put(table5Rectangle, table5);
+        rectangleTableMap.put(table6Rectangle, table6);
+        rectangleTableMap.put(table7Rectangle, table7);
+        rectangleTableMap.put(table8Rectangle, table8);
+    }
+    
+    private void updateLabelText(Table table) {
+        String statusText = String.valueOf(table.getStatus());
+        if (table.getStatus() != Status.AVAILABLE) {
+            table.getLabel().setText(statusText);
+        }
+        else if (table.getStatus() == Status.AVAILABLE) {
+            table.getLabel().setText("Table " + table.getTableID());
+        }
+//        System.out.println("Table " + table.getTableID() + " status: " + status + " label: " + table.getLabel());
+    }
+
+    private void updateRectangleColour(Table table) {
+        System.out.println("updateRectangleColour()");
+        System.out.println(table.getTableID() + " " + table.getStatus());
+        table.getRectangle().setFill(statusColourMap.get(table.getStatus()));
+    }
+    
+    private void setRectangleDisable(Table table) {
+        table.getRectangle().setDisable(false);
+        if (table.getStatus() != Status.AVAILABLE) {
+            table.getRectangle().setDisable(true);
+        }
+    }
+    
+    private void setBookButtonDisable() {
+        
     }
 
     private void refresh() {
-        // REFRESH TABLE STATUS & CHANGE COLOURS+LABELS+NODEAVAILABILITY
-        // USE MODEL TO ACCESS DATABASE
-        // iF BOOKED BY USER -> different colour
-        
-        user = User.getUser();
+        selectedTable = null;
+
+        for (Table table : tableArray) {
+            tableViewModel.updateTableStatus(table, user.getUserID(), selectedDate);
+            updateLabelText(table);
+            updateRectangleColour(table);
+
+            setRectangleDisable(table);
+        }
 
     }
 
     @FXML
     public void handleDatePick(ActionEvent event) {
         selectedDate = datePicker.getValue();
+        System.out.println("handleDatePick()");
         refresh();
+        statusLabel.setText("");
     }
 
     // BOOK TABLE
     @FXML
     public void handleBookButton(ActionEvent event) throws SQLException {
-        if (selectedDate == null) {
-            status.setText("Please select a date before booking a table");
-            return;
-        }
 
         int employeeID = user.getUserID();
-        int tableID = Integer.parseInt(selectedTable.getAccessibleText());
+        int tableID = selectedTable.getTableID();
+        
+        if (selectedDate == null) {
+            statusLabel.setText("Please select a date before booking a table");
+            return;
+        }
+        else {
+            statusLabel.setText("Booked table " + tableID + " for " + user.getUsername() + " on " + selectedDate);
+        }
 
-        System.out.println("Booking table no: " + tableID + " for user: " + employeeID + " for date: " + selectedDate);
         tableViewModel.bookTable(employeeID, tableID, selectedDate);
+        refresh();
     }
     
     @FXML
@@ -116,23 +220,24 @@ public class TableViewController implements Initializable {
     }
 
 
-    // CHANGE SELECTED TABLE COLOUR, SET selectedTable to node
+    // CHANGE SELECTED TABLE COLOUR, SET selectedTable to table
     @FXML
     public void handleMouseClick(MouseEvent event) {
 
         Node node = (Node)event.getSource();
+        Rectangle rectangle = (Rectangle)node;
+        Table table = rectangleTableMap.get(rectangle);
 
         if (selectedTable == null) {
-            selectedTable = node;
+            selectedTable = table;
         }
 
-        ((Rectangle)node).setFill(colourSelected);
+        table.getRectangle().setFill(colourSelected);
 
-        if (node != selectedTable) {
-            ((Rectangle)selectedTable).setFill(colourAvailable);
+        if (table != selectedTable) {
+            selectedTable.getRectangle().setFill(statusColourMap.get(selectedTable.getStatus()));
         }
-
-        selectedTable = node;
+        selectedTable = table;
     }
 
     // ANIMATE MOUSE HOVER
@@ -142,8 +247,6 @@ public class TableViewController implements Initializable {
         
         node.setScaleX(1.05);
         node.setScaleY(1.05);
-        
-        node.setRotate(1);
     }
     @FXML
     public void handleMouseExit(MouseEvent event) {
@@ -151,8 +254,6 @@ public class TableViewController implements Initializable {
 
         node.setScaleX(1);
         node.setScaleY(1);
-        
-        node.setRotate(0);
     }
 
 

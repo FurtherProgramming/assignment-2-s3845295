@@ -24,7 +24,8 @@ public class RegisterModel {
             return false;
         }
     }
-    
+
+    // UPDATE USER INSTANCE TO NEW USER CREATED!
     public void registerToDb(String name, String surname, int age, String username, String password) throws SQLException {
         System.out.println("registerToDb()");
 

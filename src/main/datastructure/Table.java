@@ -1,38 +1,48 @@
 package main.datastructure;
 
+import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Label;
+
 public class Table {
+
+    private int tableID;
+    private Status status;
+    private Rectangle rectangle;
+    private Label label;
     
-    private int _tableID;
-    private Status _status;
-    
-    enum Status {
-        OPEN,
+    public enum Status {
+        AVAILABLE,
         BOOKED,
         LOCKED,
-        PREVBOOKED
+        PREVBOOKED,
+        USERBOOKED
     }
 
-    public Table(int tableID) {
-        // connect to database and establish table status
+    public Table(int tableID, Label label, Rectangle rectangle) {
+        
+//        System.out.println("CONSTRUCTOR: " + tableID + " " + label + " " + rectangle);
+        
+        this.status = Status.AVAILABLE;
+        this.tableID = tableID;
+        this.label = label;
+        this.rectangle = rectangle;
+    }
+    public int getTableID() {
+        return tableID;
+    }
+    public Status getStatus() {
+        return this.status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+    public Label getLabel() {
+        return this.label;
     }
     
-    void refresh() {
-        // refresh database and establish stable status
-    }
-    
-    Status getStatus() {
-        return this._status;
-    }
-    
-    void setStatus(Status status) {
-        this._status = status;
-    }
-    
-    boolean bookedPreviously(int employeeID) {
-        boolean bookedPreviously = false;
-        // connect to booking table  and check if last booking by employee was this table: return true.
-        return bookedPreviously;
-    }
     
     
 }
