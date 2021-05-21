@@ -1,9 +1,7 @@
 package main.model;
 
 import main.SQLConnection;
-import main.datastructure.Booking;
 import main.helper.User;
-import org.sqlite.SQLiteConnection;
 
 import main.datastructure.Table;
 import main.datastructure.Table.Status;
@@ -76,13 +74,13 @@ public class TableViewModel {
             e.printStackTrace();
         }
 
-        if (isBookedPreviously(table, date)) {
+        if (wasPreviouslyBooked(table, date)) {
             table.setStatus(Status.PREVBOOKED);
         }
 
     }
 
-    boolean isBookedPreviously(Table table, LocalDate date) {
+    boolean wasPreviouslyBooked(Table table, LocalDate date) {
         boolean bookedPreviously = false;
 
         String sqlQUERY =   "SELECT * " +
@@ -91,6 +89,7 @@ public class TableViewModel {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
             preparedStatement.setInt(1, table.getTableID());
+            // CHECK YESTERDAY'S DATE
             preparedStatement.setDate(2, Date.valueOf((date.minus(Period.ofDays(1)))));
             ResultSet resultSet = preparedStatement.executeQuery();
 

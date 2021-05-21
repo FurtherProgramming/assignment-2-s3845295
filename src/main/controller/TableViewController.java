@@ -43,8 +43,8 @@ public class TableViewController implements Initializable {
     private final Color colourSelected = Color.rgb(188,227,143);
     private final Color colourBooked = Color.rgb(255,137,137);
     private final Color colourLocked = Color.rgb(255,173,111);
-    private final Color colourPrevBooked = Color.rgb(171, 120, 168);
-    private final Color colourUserBooked = Color.rgb(109,167,167);
+    private final Color colourPrevBooked = Color.rgb(184, 140, 209);
+    private final Color colourUserBooked = Color.rgb(119, 186, 224);
     private final Color colourPending = Color.rgb(190,190,190);
 
     private HashMap<Status, Color> statusColourMap = new HashMap<Status, Color>();
@@ -161,7 +161,7 @@ public class TableViewController implements Initializable {
         statusTextMap.put(Status.BOOKED, "Not Available");
         statusTextMap.put(Status.LOCKED, "Locked");
         statusTextMap.put(Status.PREVBOOKED, "Table was previously booked");
-        statusTextMap.put(Status.USERBOOKED, "Confirmed Booking");
+        statusTextMap.put(Status.USERBOOKED, "Confirmed Booking for " + user.getUsername());
         statusTextMap.put(Status.PENDING, "Pending Confirmation");
 
     }
