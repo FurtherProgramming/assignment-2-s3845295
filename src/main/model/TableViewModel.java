@@ -11,6 +11,7 @@ import main.datastructure.Table.Status;
 import java.sql.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class TableViewModel {
     
@@ -43,34 +44,30 @@ public class TableViewModel {
     }
     
     public void updateTableStatus(Table table, int userID, LocalDate date) {
-        // update table status enum according to database
-        
         table.setStatus(Status.AVAILABLE);
 
-        // check if table is booked
-        String sqlQUERY = "SELECT * FROM Booking WHERE TableID = ? AND Date = ?";
+        String sqlQUERY =   "SELECT * " +
+                            "FROM Booking " +
+                            "WHERE TableID = ? AND Date = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
-
             preparedStatement.setInt(1, table.getTableID());
             preparedStatement.setDate(2, Date.valueOf(date));
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // CHECK FOR TABLE BOOKING ON DATE
             if (resultSet.next()) {
-
-                // CHECK IF THE USER HAS BOOKED IT
                 if (resultSet.getInt(4) == userID) {
-
-                    // CHECK IF BOOKING IS PENDING
+                    // IF USER HAS BOOKED
                     if (!resultSet.getBoolean(5)) {
+                        // CHECK CONFIRMATION STATUS
                         table.setStatus(Status.PENDING);
                     }
-                    // IF CONFIRMED:
                     else {
+                        // CONFIRMED BOOKING
                         table.setStatus(Status.USERBOOKED);
                     }
                 }
                 else {
+                    // TABLE BOOKED BY SOMEONE ELSE
                     table.setStatus(Status.BOOKED);
                 }
             }
@@ -79,12 +76,38 @@ public class TableViewModel {
             e.printStackTrace();
         }
 
+        if (isBookedPreviously(table, date)) {
+            table.setStatus(Status.PREVBOOKED);
+        }
+
     }
 
-    boolean isBookedPreviously(int employeeID, int tableID) {
+    boolean isBookedPreviously(Table table, LocalDate date) {
         boolean bookedPreviously = false;
-        // connect to booking table  and check if last booking by employee was this table: return true.
+
+        String sqlQUERY =   "SELECT * " +
+                            "FROM Booking " +
+                            "WHERE TableID = ? AND Date = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+            preparedStatement.setInt(1, table.getTableID());
+            preparedStatement.setDate(2, Date.valueOf((date.minus(Period.ofDays(1)))));
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                bookedPreviously = true;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return bookedPreviously;
+    }
+    
+    public boolean canUserBook(User user) {
+        // check if user has no existing booking.
+        return false;
     }
     
     public boolean isUserAdmin(User user) {

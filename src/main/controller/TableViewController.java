@@ -177,12 +177,18 @@ public class TableViewController implements Initializable {
         rectangleTableMap.put(table8Rectangle, table8);
     }
 
-    private void setBookButtonDisable(boolean disable) {
-        bookButton.setDisable(disable);
-    }
-    
-    private void setAdminDisable(boolean disable) {
-        adminMenu.setDisable(disable);
+    private void refresh() {
+        selectedTable = null;
+
+        for (Table table : tableArray) {
+            tableViewModel.updateTableStatus(table, user.getUserID(), selectedDate);
+            updateLabelText(table);
+            updateRectangleColour(table);
+            updateRectangleDisable(table);
+        }
+
+        setBookButtonDisable(true);
+        validateBookButton();
     }
 
     private void updateLabelText(Table table) {
@@ -207,21 +213,20 @@ public class TableViewController implements Initializable {
         }
     }
     
-
-
-    private void refresh() {
-        selectedTable = null;
-
-        for (Table table : tableArray) {
-            tableViewModel.updateTableStatus(table, user.getUserID(), selectedDate);
-            updateLabelText(table);
-            updateRectangleColour(table);
-
-            updateRectangleDisable(table);
+    private void validateBookButton() {
+        if (tableViewModel.canUserBook(user)) {
+            setBookButtonDisable(false);
         }
-
-        setBookButtonDisable(true);
     }
+
+    private void setBookButtonDisable(boolean disable) {
+        bookButton.setDisable(disable);
+    }
+
+    private void setAdminDisable(boolean disable) {
+        adminMenu.setDisable(disable);
+    }
+
 
     @FXML
     public void handleDatePick(ActionEvent event) {
