@@ -109,6 +109,7 @@ public class ManageBookingsController implements Initializable {
     @FXML
     public void handleRejectButton(ActionEvent event) throws IOException {
         for (Integer bookingID : selectedBookingIDs) {
+            System.out.println("REJECTING bookingID: " + bookingID);
             manageBookingsModel.rejectBooking(bookingID);
         }
         sceneRefresh(event);

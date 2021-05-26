@@ -181,7 +181,7 @@ public class TableViewController implements Initializable {
         selectedTable = null;
 
         for (Table table : tableArray) {
-            tableViewModel.updateTableStatus(table, user.getUserID(), selectedDate);
+            tableViewModel.updateTableStatus(table, user, selectedDate);
             updateLabelText(table);
             updateRectangleColour(table);
             updateRectangleDisable(table);
@@ -201,8 +201,6 @@ public class TableViewController implements Initializable {
     }
 
     private void updateRectangleColour(Table table) {
-        System.out.println("updateRectangleColour()");
-        System.out.println(table.getTableID() + " " + table.getStatus());
         table.getRectangle().setFill(statusColourMap.get(table.getStatus()));
     }
     
@@ -214,8 +212,13 @@ public class TableViewController implements Initializable {
     }
     
     private void validateBookButton() {
-        if (tableViewModel.canUserBook(user)) {
-            setBookButtonDisable(false);
+        System.out.println("validateBookButton");
+        try {
+            setBookButtonDisable(tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
+            System.out.println("setBookButtonDisable: " + tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -240,7 +243,6 @@ public class TableViewController implements Initializable {
     @FXML
     public void handleBookButton(ActionEvent event) throws SQLException {
 
-        int employeeID = user.getUserID();
         int tableID = selectedTable.getTableID();
         
         if (selectedDate == null) {
@@ -251,7 +253,7 @@ public class TableViewController implements Initializable {
             statusLabel.setText("Booked table " + tableID + " for " + user.getUsername() + " on " + selectedDate);
         }
 
-        tableViewModel.bookTable(employeeID, tableID, selectedDate);
+        tableViewModel.bookTable(user, tableID, selectedDate);
         refresh();
     }
     
@@ -279,7 +281,7 @@ public class TableViewController implements Initializable {
             selectedTable.getRectangle().setFill(statusColourMap.get(selectedTable.getStatus()));
         }
         selectedTable = table;
-        setBookButtonDisable(false);
+        validateBookButton();
     }
 
     // ANIMATE MOUSE HOVER

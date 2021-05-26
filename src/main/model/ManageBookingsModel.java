@@ -3,7 +3,6 @@ package main.model;
 import main.SQLConnection;
 import main.helper.CurrentDate;
 import java.sql.*;
-import java.time.LocalDate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

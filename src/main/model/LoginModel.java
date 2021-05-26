@@ -73,6 +73,7 @@ public class LoginModel {
             user.setUsername(resultSet.getString(5));
             user.setPassword(resultSet.getString(6));
             user.setAdmin(resultSet.getBoolean(7));
+            user.set_lastBookingID(resultSet.getInt(8));
             System.out.println("username: " + resultSet.getString(5) + " admin " + resultSet.getBoolean(7));
 
         }

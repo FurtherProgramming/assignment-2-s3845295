@@ -14,6 +14,8 @@ public class User {
     private String _password;
     private boolean _admin;
 
+    private int _lastBookingID;
+
     private User() {
 
     }
@@ -65,6 +67,12 @@ public class User {
     }
     public void setAdmin(boolean _admin) {
         this._admin = _admin;
+    }
+    public int get_lastBookingID() {
+        return _lastBookingID;
+    }
+    public void set_lastBookingID(int _lastBookingID) {
+        this._lastBookingID = _lastBookingID;
     }
 
 }
