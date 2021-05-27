@@ -7,15 +7,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
 
-import main.datastructure.Table;
-import main.datastructure.Table.Status;
+import main.object.Table;
+import main.object.Table.Status;
 import main.helper.CurrentDate;
 import main.helper.User;
 import main.model.TableViewModel;
@@ -312,9 +311,7 @@ public class TableViewController implements Initializable {
     
     public void handleMenuItemLockdown(ActionEvent event) throws IOException {
         SceneHelper.newScene("lockdownDatePicker", event);
-
-
-        // TODO: MAKE SURE USER CAN'T CLICK BUTTON BEFORE ENTERING DATES -- maybe just switch scene?
+        
         lockdownButton.setDisable(false);
     }
     

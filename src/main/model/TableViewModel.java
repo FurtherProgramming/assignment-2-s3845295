@@ -3,8 +3,8 @@ package main.model;
 import main.SQLConnection;
 import main.helper.User;
 
-import main.datastructure.Table;
-import main.datastructure.Table.Status;
+import main.object.Table;
+import main.object.Table.Status;
 
 import java.sql.*;
 

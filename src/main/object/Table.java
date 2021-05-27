@@ -1,4 +1,4 @@
-package main.datastructure;
+package main.object;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
