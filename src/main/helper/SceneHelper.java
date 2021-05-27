@@ -30,7 +30,25 @@ public class SceneHelper {
             primaryStage = ((Stage)((Node)event.getSource()).getScene().getWindow());
         }
         primaryStage.setScene(scene);
-       
+        
+    }
+    
+    public static void newScene(String sceneName, ActionEvent event) throws IOException {
+
+        sceneName = "../ui/" + sceneName +  ".fxml";
+        
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
+    public static void close(ActionEvent event) {
+        Stage stage = ((Stage)((Node)event.getSource()).getScene().getWindow());
+        stage.close();
     }
 
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LockdownController">
+   <children>
+      <BorderPane prefHeight="149.0" prefWidth="463.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <FlowPane alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="463.0" BorderPane.alignment="CENTER">
+               <children>
+                  <DatePicker fx:id="startDatePicker" promptText="Start Date">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" />
+                     </FlowPane.margin>
+                  </DatePicker>
+                  <DatePicker fx:id="endDatePicker" promptText="End Date">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="20.0" />
+                     </FlowPane.margin>
+                  </DatePicker>
+                  <Button mnemonicParsing="false" onAction="#handleOKButton" text="OK">
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel">
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" right="20.0" top="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+         </center>
+         <top>
+            <Label alignment="TOP_LEFT" text="Select Lockdown Dates" BorderPane.alignment="TOP_LEFT">
+               <BorderPane.margin>
+                  <Insets left="30.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

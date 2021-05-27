@@ -6,7 +6,6 @@ import main.helper.User;
 import main.datastructure.Table;
 import main.datastructure.Table.Status;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -140,7 +139,7 @@ public class TableViewModel {
         }
         
         // check if user has no existing booking.
-        String sqlQUERY = "SELECT * FROM Booking WHERE EmployeeID = ? AND Date <= ?";
+        String sqlQUERY = "SELECT * FROM Booking WHERE EmployeeID = ? AND Date >= ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
             preparedStatement.setInt(1,user.getUserID());

@@ -55,10 +55,10 @@
                               <MenuItem mnemonicParsing="false" text="View Bookings" />
                         </items>
                       </Menu>
-                      <Menu fx:id="adminMenu" disable="true" mnemonicParsing="false" text="Admin">
+                      <Menu fx:id="adminMenu" disable="true" mnemonicParsing="false" text="Admin" visible="false">
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#handleMenuItemManageBookings" text="Manage Bookings" />
-                          <MenuItem mnemonicParsing="false" text="Manage Lockdown" />
+                          <MenuItem mnemonicParsing="false" onAction="#handleMenuItemLockdown" text="Manage Lockdown" />
                               <MenuItem mnemonicParsing="false" text="Manage Employees" />
                               <MenuItem mnemonicParsing="false" text="Generate Report" />
                         </items>
@@ -79,6 +79,7 @@
                   </Label>
                   <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" vgap="10.0">
                      <children>
+                        <Button fx:id="lockdownButton" disable="true" mnemonicParsing="false" onAction="#handleLockdownButton" text="Lockdown" visible="false" />
                         <Button fx:id="bookButton" mnemonicParsing="false" onAction="#handleBookButton" text="Book" />
                         <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out">
                            <FlowPane.margin>

@@ -60,6 +60,8 @@ public class TableViewController implements Initializable {
     private DatePicker datePicker;
     @FXML
     private Button bookButton;
+    @FXML
+    private Button lockdownButton;
 
     @FXML
     private Label table1Label;
@@ -138,7 +140,7 @@ public class TableViewController implements Initializable {
 
         if (tableViewModel.isUserAdmin(user)) {
             System.out.println("USERADMIN");
-            setAdminDisable(false);
+            adminEnable();
         }
         
         datePicker.setValue(CurrentDate.getCurrentDate());
@@ -226,8 +228,11 @@ public class TableViewController implements Initializable {
         bookButton.setDisable(disable);
     }
 
-    private void setAdminDisable(boolean disable) {
-        adminMenu.setDisable(disable);
+    private void adminEnable() {
+        adminMenu.setDisable(false);
+        adminMenu.setVisible(true);
+        lockdownButton.setDisable(true);
+        lockdownButton.setVisible(true);
     }
 
 
@@ -303,6 +308,18 @@ public class TableViewController implements Initializable {
     //ADMIN MENU
     public void handleMenuItemManageBookings(ActionEvent event) throws IOException {
         SceneHelper.switchScene("manageBookings", event);
+    }
+    
+    public void handleMenuItemLockdown(ActionEvent event) throws IOException {
+        SceneHelper.newScene("lockdownDatePicker", event);
+
+
+        // TODO: MAKE SURE USER CAN'T CLICK BUTTON BEFORE ENTERING DATES -- maybe just switch scene?
+        lockdownButton.setDisable(false);
+    }
+    
+    public void handleLockdownButton(ActionEvent event) {
+        System.out.println("handleLockdownButton()");
     }
 
 
