@@ -164,7 +164,7 @@ public class TableViewController implements Initializable {
         statusTextMap.put(Status.BOOKED, "Not Available");
         statusTextMap.put(Status.LOCKED, "Locked");
         statusTextMap.put(Status.PREVBOOKED, "Table was previously booked");
-        statusTextMap.put(Status.USERBOOKED, "Confirmed Booking for " + user.getUsername());
+        statusTextMap.put(Status.USERBOOKED, "Confirmed Booking for " + user.getFirstName() + " " + user.getLastName());
         statusTextMap.put(Status.PENDING, "Pending Confirmation");
 
     }

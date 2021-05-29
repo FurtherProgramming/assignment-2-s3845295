@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class LoginModel {
 
+    User user = User.getUser();
     Connection connection;
 
     public LoginModel(){
@@ -29,57 +30,31 @@ public class LoginModel {
         }
     }
 
-    public Boolean isLogin(String user, String pass) throws SQLException {
+    public Boolean isLogin(String username, String password) throws SQLException {
         String query = "select * from employee where username = ? and password= ?";
+
+        boolean login = false;
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
             
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, pass);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-
-                System.out.println("SETTING USER");
-                setUser(user);
-
-                return true;
-            }
-            else {
-                return false;
+                login =  true;
             }
         }
         catch (Exception e) {
             return false;
         }
-    }
-    
-    private void setUser(String userString) throws SQLException {
 
-        User user = User.getUser();
-        String sqlQUERY = "SELECT * FROM Employee WHERE username = ?";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
-
-            preparedStatement.setString(1, userString);
-            
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // WRITE TO USER SINGLETON
-            user.setUserID(resultSet.getInt(1));
-            user.setName(resultSet.getString(2));
-            user.setSurname(resultSet.getString(3));
-            user.setAge(resultSet.getInt(4));
-            user.setUsername(resultSet.getString(5));
-            user.setPassword(resultSet.getString(6));
-            user.setAdmin(resultSet.getBoolean(7));
-            user.set_lastBookingID(resultSet.getInt(8));
-            System.out.println("username: " + resultSet.getString(5) + " admin " + resultSet.getBoolean(7));
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+        if (login) {
+            System.out.println("SETTING USER");
+            user.setUser(username);
         }
 
+        return login;
     }
+
 }

@@ -25,7 +25,7 @@ public class ManageBookingsModel {
         
 
 
-        String sqlQUERYBooking =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.name, Employee.surname, Employee.username " +
+        String sqlQUERYBooking =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username " +
                                     "FROM Booking " +
                                     "INNER JOIN Employee ON Booking.EmployeeID  = Employee.id " +
                                     "WHERE Date >= ?";

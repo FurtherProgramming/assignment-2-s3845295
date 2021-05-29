@@ -1,5 +1,12 @@
 package main.helper;
 
+import main.SQLConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 // SINGLETON USER
 public class User {
 
@@ -7,14 +14,19 @@ public class User {
 
 
     private int userID;
-    private String _name;
-    private String _surname;
-    private int _age;
-    private String _username;
-    private String _password;
-    private boolean _admin;
+    private String firstName;
+    private String lastName;
+    private String role;
+    private String username;
+    private String password;
+    private String secretQuestion;
 
-    private int _lastBookingID;
+
+    private String secretAnswer;
+    
+    
+    private boolean admin;
+    private int lastBookingID;
 
     private User() {
 
@@ -26,53 +38,103 @@ public class User {
         }
         return user;
     }
+
     public int getUserID() {
         return userID;
     }
     public void setUserID(int _userID) {
         this.userID = _userID;
     }
-    public String getName() {
-        return _name;
+    public String getFirstName() {
+        return firstName;
     }
-    public void setName(String _name) {
-        this._name = _name;
+    public void setFirstName(String _name) {
+        this.firstName = _name;
     }
-    public String getSurname() {
-        return _surname;
+    public String getLastName() {
+        return lastName;
     }
-    public void setSurname(String _surname) {
-        this._surname = _surname;
+    public void setLastName(String lastname) {
+        this.lastName = lastname;
     }
-    public int getAge() {
-        return _age;
+    public String getRole() {
+        return role;
     }
-    public void setAge(int _age) {
-        this._age = _age;
+    public void setRole(String role) {
+        this.role = role;
     }
     public String getUsername() {
-        return _username;
+        return username;
     }
     public void setUsername(String _username) {
-        this._username = _username;
+        this.username = _username;
     }
     public String getPassword() {
-        return _password;
+        return password;
     }
     public void setPassword(String _password) {
-        this._password = _password;
+        this.password = _password;
     }
+    public String getSecretQuestion() {
+        return secretQuestion;
+    }
+    public void setSecretQuestion(String secretQuestion) {
+        this.secretQuestion = secretQuestion;
+    }
+    public String getSecretAnswer() {
+        return secretAnswer;
+    }
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
+    }
+
     public boolean isAdmin(){
-        return _admin;
+        return admin;
     }
     public void setAdmin(boolean _admin) {
-        this._admin = _admin;
+        this.admin = _admin;
     }
-    public int get_lastBookingID() {
-        return _lastBookingID;
+    public int getLastBookingID() {
+        return lastBookingID;
     }
-    public void set_lastBookingID(int _lastBookingID) {
-        this._lastBookingID = _lastBookingID;
+    public void setLastBookingID(int lastBookingID) {
+        this.lastBookingID = lastBookingID;
+    }
+
+    public void setUser(String username) throws SQLException {
+        
+        Connection connection;
+        connection = SQLConnection.connect();
+        if (connection == null)
+            System.exit(1);
+
+        String sqlQUERY = "SELECT * FROM Employee WHERE username = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+
+            preparedStatement.setString(1, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // WRITE USER INFO FROM DATABASE
+            setUserID(resultSet.getInt(1));
+            setFirstName(resultSet.getString(2));
+            setLastName(resultSet.getString(3));
+            setRole(resultSet.getString(8));
+            setUsername(resultSet.getString(4));
+            setPassword(resultSet.getString(5));
+            setAdmin(resultSet.getBoolean(6));
+            setLastBookingID(resultSet.getInt(7));
+            setSecretQuestion(resultSet.getString(9));
+            setSecretAnswer(resultSet.getString(10));
+
+            System.out.println("username: " + resultSet.getString(5) + " admin " + resultSet.getBoolean(7));
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

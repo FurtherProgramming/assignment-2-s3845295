@@ -1,6 +1,7 @@
 package main.model;
 
 import main.SQLConnection;
+import main.helper.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 
 public class RegisterModel {
 
+    User user = User.getUser();
     Connection connection;
 
     public RegisterModel() {
@@ -15,33 +17,24 @@ public class RegisterModel {
         if (connection == null)
             System.exit(1);
     }
-    
-    public Boolean isDbConnected() {
-        try {
-            return !connection.isClosed();
-        }
-        catch (Exception e) {
-            return false;
-        }
-    }
 
     // UPDATE USER INSTANCE TO NEW USER CREATED!
-    public void registerToDb(String name, String surname, int age, String username, String password) throws SQLException {
+    public void registerToDb(String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer) throws SQLException {
         System.out.println("registerToDb()");
 
-        PreparedStatement preparedStatement = null;
+        String sqlINSERT = "INSERT INTO Employee (FirstName, LastName, Role, Username, Password, SecretQuestion, SecretAnswer) VALUES (?,?,?,?,?,?,?)";
 
-        String sqlINSERT = "INSERT INTO Employee (name, surname, age, username, password) VALUES (?,?,?,?,?)";
-
-        preparedStatement = connection.prepareStatement(sqlINSERT);
-        preparedStatement.setString(1, name);
-        preparedStatement.setString(2, surname);
-        preparedStatement.setInt(3, age);
-        preparedStatement.setString(4, username);
-        preparedStatement.setString(5, password);
-        preparedStatement.executeUpdate();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlINSERT)) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, role);
+            preparedStatement.setString(4, username);
+            preparedStatement.setString(5, password);
+            preparedStatement.setString(6, secretQuestion);
+            preparedStatement.setString(7, secretAnswer);
+            preparedStatement.executeUpdate();
+        }
         
-        preparedStatement.close();
-
+        user.setUser(username);
     }
 }

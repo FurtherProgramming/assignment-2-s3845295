@@ -3,17 +3,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.RegisterController">
+<AnchorPane prefHeight="400.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.RegisterController">
    <children>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="-7.0" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="400.0" prefWidth="279.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="txtName" promptText="Name" />
-            <TextField fx:id="txtSurname" promptText="Surname" />
-            <TextField fx:id="intAge" promptText="Age (years)" />
-            <TextField fx:id="txtUsername" promptText="Username" />
-            <TextField fx:id="txtPassword" promptText="Password" />
-            <Button mnemonicParsing="false" onAction="#Register" text="Register" />
-            <Label fx:id="isConnected" text="Status" />
+            <Label text="Register User Information" />
+            <TextField fx:id="txtFirstName" onKeyReleased="#handleTextFieldKeyRelease" promptText="First Name" />
+            <TextField fx:id="txtLastName" onKeyReleased="#handleTextFieldKeyRelease" promptText="Last Name" />
+            <TextField fx:id="txtRole" onKeyReleased="#handleTextFieldKeyRelease" promptText="Role" />
+            <TextField fx:id="txtUsername" onKeyReleased="#handleTextFieldKeyRelease" promptText="Username" />
+            <TextField fx:id="txtPassword" onKeyReleased="#handleTextFieldKeyRelease" promptText="Password" />
+            <TextField fx:id="txtSecretQuestion" onKeyReleased="#handleTextFieldKeyRelease" promptText="Secret Question" />
+            <TextField fx:id="txtSecretAnswer" onKeyReleased="#handleTextFieldKeyRelease" promptText="Answer" />
+            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" text="Register" />
          </children></FlowPane>
    </children>
 </AnchorPane>

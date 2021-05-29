@@ -6,7 +6,6 @@ import main.helper.User;
 import main.object.Table;
 import main.object.Table.Status;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -48,7 +47,7 @@ public class TableViewModel {
             preparedStatement.setInt(3, user.getUserID());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            user.set_lastBookingID(resultSet.getInt(1));
+            user.setLastBookingID(resultSet.getInt(1));
         }
 
         String sqlUPDATE =  "UPDATE Employee " +
@@ -56,7 +55,7 @@ public class TableViewModel {
                             "WHERE id = ?";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUPDATE)) {
-            preparedStatement.setInt(1, user.get_lastBookingID());
+            preparedStatement.setInt(1, user.getLastBookingID());
             preparedStatement.setInt(2, user.getUserID());
             preparedStatement.executeUpdate();
         }
@@ -120,7 +119,7 @@ public class TableViewModel {
                             "WHERE BookingID = ?";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
-            preparedStatement.setInt(1, user.get_lastBookingID());
+            preparedStatement.setInt(1, user.getLastBookingID());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
@@ -166,7 +165,7 @@ public class TableViewModel {
     public boolean doesUserHaveBooking(User user, LocalDate date) throws SQLException {
         boolean  userBooking = false;
 
-        if (user.get_lastBookingID() == 0) {
+        if (user.getLastBookingID() == 0) {
             return false;
         }
         

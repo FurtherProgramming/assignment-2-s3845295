@@ -3,11 +3,14 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
 
 import main.model.RegisterModel;
 import main.helper.SceneHelper;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,15 +24,22 @@ public class RegisterController implements Initializable {
     @FXML
     private Label isConnected;
     @FXML
-    public TextField txtName;
+    private TextField txtFirstName;
     @FXML
-    public TextField txtSurname;
+    private TextField txtLastName;
     @FXML
-    public TextField intAge;
+    private TextField txtRole;
     @FXML
-    public TextField txtUsername;
+    private TextField txtUsername;
     @FXML
-    public TextField txtPassword;
+    private TextField txtPassword;
+    @FXML
+    private TextField txtSecretQuestion;
+    @FXML
+    private TextField txtSecretAnswer;
+
+    @FXML
+    private Button registerButton;
 
     public RegisterController() {
 
@@ -38,22 +48,34 @@ public class RegisterController implements Initializable {
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (registerModel.isDbConnected()) {
-            isConnected.setText("Connected");
-        } else {
-            isConnected.setText("Not Connected");
+
+        registerButton.setDisable(true);
+    }
+    
+    public void handleTextFieldKeyRelease(KeyEvent event) {
+        if (    !txtFirstName.getText().isEmpty() && 
+                !txtLastName.getText().isEmpty() &&
+                !txtRole.getText().isEmpty() &&
+                !txtUsername.getText().isEmpty() &&
+                !txtPassword.getText().isEmpty() &&
+                !txtSecretQuestion.getText().isEmpty() &&
+                !txtSecretAnswer.getText().isEmpty()) {
+
+            registerButton.setDisable(false);
         }
     }
     
-    public void Register(ActionEvent event) throws IOException {
+    public void register(ActionEvent event) throws IOException {
         try {
-            String name = txtName.getText();
-            String surname = txtSurname.getText();
-            int age = Integer.parseInt(intAge.getText());
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String role = txtRole.getText();
             String username = txtUsername.getText();
             String password = txtPassword.getText();
+            String secretQuestion = txtSecretQuestion.getText();
+            String secretAnswer = txtSecretAnswer.getText();
 
-            registerModel.registerToDb(name, surname, age, username, password);
+            registerModel.registerToDb(firstName, lastName, role, username, password, secretQuestion, secretAnswer);
         }
         catch (SQLException e) {
             e.printStackTrace();
