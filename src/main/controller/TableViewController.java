@@ -13,6 +13,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
 
+import main.helper.LockdownDate;
 import main.object.Table;
 import main.object.Table.Status;
 import main.helper.CurrentDate;
@@ -34,6 +35,7 @@ public class TableViewController implements Initializable {
     private TableViewModel tableViewModel = new TableViewModel();
 
     private User user = User.getUser();
+    private LockdownDate lockdownDate = LockdownDate.getLockdownDateInstance();
     
     private Table selectedTable;
     private LocalDate selectedDate;
@@ -188,8 +190,8 @@ public class TableViewController implements Initializable {
             updateRectangleDisable(table);
         }
 
-        setBookButtonDisable(true);
-        validateBookButton();
+        System.out.println("selectedTable: " + selectedTable);
+        validateSelectionButtons();
     }
 
     private void updateLabelText(Table table) {
@@ -212,7 +214,17 @@ public class TableViewController implements Initializable {
         }
     }
     
+    private void validateSelectionButtons() {
+        setBookButtonDisable(true);
+        setLockdownButtonDisable(true);
+        if (selectedTable != null) {
+            validateBookButton();
+            validateLockdownButton();
+        }
+    }
+    
     private void validateBookButton() {
+
         System.out.println("validateBookButton");
         try {
             setBookButtonDisable(tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
@@ -225,6 +237,17 @@ public class TableViewController implements Initializable {
 
     private void setBookButtonDisable(boolean disable) {
         bookButton.setDisable(disable);
+    }
+
+    // VALIDATE LOCKDOWN BUTTON
+    private void validateLockdownButton() {
+        if (lockdownDate.getLockdownStartDate() != null && lockdownDate.getLockdownEndDate() != null) {
+            setLockdownButtonDisable(false);
+        }
+    }
+    
+    private void setLockdownButtonDisable(Boolean disable) {
+        lockdownButton.setDisable(disable);
     }
 
     private void adminEnable() {
@@ -260,7 +283,8 @@ public class TableViewController implements Initializable {
         tableViewModel.bookTable(user, tableID, selectedDate);
         refresh();
     }
-    
+
+    // LOG OUT OF APPLICATION
     @FXML
     public void handleLogOut(ActionEvent event) throws IOException {
         SceneHelper.switchScene("homePage", event);
@@ -286,6 +310,7 @@ public class TableViewController implements Initializable {
         }
         selectedTable = table;
         validateBookButton();
+        validateLockdownButton();
     }
 
     // ANIMATE MOUSE HOVER
@@ -304,20 +329,22 @@ public class TableViewController implements Initializable {
         node.setScaleY(1);
     }
     
-    //ADMIN MENU
+    // ADMIN MENU
+    // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemManageBookings(ActionEvent event) throws IOException {
         SceneHelper.switchScene("manageBookings", event);
     }
-    
+
+    // OPEN LOCKDOWN DATE SELECTION
     public void handleMenuItemLockdown(ActionEvent event) throws IOException {
         SceneHelper.newScene("lockdownDatePicker", event);
-        
-        lockdownButton.setDisable(false);
-    }
-    
-    public void handleLockdownButton(ActionEvent event) {
-        System.out.println("handleLockdownButton()");
     }
 
+    // LOCKDOWN TABLE FOR SELECTED DATES
+    public void handleLockdownButton(ActionEvent event) throws SQLException {
+        System.out.println("handleLockdownButton()");
+        tableViewModel.lockdownTable(selectedTable, lockdownDate.getLockdownStartDate(), lockdownDate.getLockdownEndDate());
+        refresh();
+    }
 
 }

@@ -4,25 +4,27 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import main.helper.SceneHelper;
 
-import java.awt.event.MouseEvent;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
-import javafx.scene.control.Button;
+
 
 import main.helper.LockdownDate;
 
 public class LockdownController implements Initializable {
 
     LockdownDate lockdownDate = LockdownDate.getLockdownDateInstance();
-    
+
+    @FXML
+    Label status;
     @FXML
     private DatePicker startDatePicker;
     @FXML
     private DatePicker endDatePicker;
-
     @FXML
     private Button OKButton;
     
@@ -33,7 +35,13 @@ public class LockdownController implements Initializable {
     
     public void refresh() {
         if (startDatePicker.getValue() != null && endDatePicker.getValue() != null) {
-            OKButton.setDisable(false);
+            if (startDatePicker.getValue().compareTo(endDatePicker.getValue()) < 0) {
+                status.setText("");
+                OKButton.setDisable(false);
+            }
+            else {
+                status.setText("End date must be after start date");
+            }
         }
     }
 

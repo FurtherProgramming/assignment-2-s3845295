@@ -6,6 +6,7 @@ import main.helper.User;
 import main.object.Table;
 import main.object.Table.Status;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -67,6 +68,7 @@ public class TableViewModel {
         String sqlQUERY =   "SELECT * " +
                             "FROM Booking " +
                             "WHERE TableID = ? AND Date = ?";
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
             preparedStatement.setInt(1, table.getTableID());
             preparedStatement.setDate(2, Date.valueOf(date));
@@ -94,18 +96,23 @@ public class TableViewModel {
             e.printStackTrace();
         }
 
+        // OTHER TABLE STATUSES REQUIRE DIFFERENT TABLES/QUERIES
         try {
-            if (wasPreviouslyBooked(table, user, date)) {
+            // CHECK IF TABLE IS LOCKED
+            if (isTableLocked(table, date)) {
+                table.setStatus(Status.LOCKED);
+            }
+            // CHECK IF TABLE WAS PREVIOUSLY BOOKED BY USER
+            else if (wasPreviouslyBooked(table, user, date)) {
                 table.setStatus(Status.PREVBOOKED);
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    boolean wasPreviouslyBooked(Table table, User user, LocalDate date) throws SQLException {
+    private boolean wasPreviouslyBooked(Table table, User user, LocalDate date) throws SQLException {
         boolean previouslyBooked = false;
         
         String sqlQUERY =   "SELECT * " +
@@ -130,8 +137,33 @@ public class TableViewModel {
         return previouslyBooked;
     }
     
-    public boolean doesUserHaveBooking(User user, LocalDate date) throws SQLException {
+    private boolean isTableLocked(Table table, LocalDate date) throws SQLException {
+        boolean locked = false;
 
+        String sqlQUERY =   "SELECT * " +
+                            "FROM Lockdown " +
+                            "WHERE TableID = ? " +
+                            "AND StartDate <= ? " +
+                            "AND EndDate >= ?";
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+            preparedStatement.setInt(1, table.getTableID());
+            preparedStatement.setDate(2, Date.valueOf(date));
+            preparedStatement.setDate(3, Date.valueOf(date));
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                locked = true;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return locked;
+    }
+    
+    public boolean doesUserHaveBooking(User user, LocalDate date) throws SQLException {
         boolean  userBooking = false;
 
         if (user.get_lastBookingID() == 0) {
@@ -159,5 +191,19 @@ public class TableViewModel {
     
     public boolean isUserAdmin(User user) {
         return user.isAdmin();
+    }
+    
+    public void lockdownTable(Table table, LocalDate startDate, LocalDate endDate) throws SQLException {
+        String sqlINSERT = "INSERT INTO Lockdown (TableID, StartDate, EndDate) VALUES (?,?,?)";
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlINSERT)) {
+            preparedStatement.setInt(1, table.getTableID());
+            preparedStatement.setDate(2, Date.valueOf(startDate));
+            preparedStatement.setDate(3, Date.valueOf(endDate));
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
