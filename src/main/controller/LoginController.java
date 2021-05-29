@@ -15,8 +15,6 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    SceneHelper sceneHelper = new SceneHelper();
-
     public LoginModel loginModel = new LoginModel();
     @FXML
     private Label isConnected;
@@ -56,6 +54,11 @@ public class LoginController implements Initializable {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // TODO: IMPLEMENT
+    public void handleForgotPassword(ActionEvent event) {
+        System.out.println("handleForgotPassword()");
     }
 
 

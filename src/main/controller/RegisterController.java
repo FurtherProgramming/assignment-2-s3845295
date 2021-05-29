@@ -48,10 +48,10 @@ public class RegisterController implements Initializable {
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         registerButton.setDisable(true);
     }
-    
+
+    // ONLY MAKE REGISTER BUTTON AVAILABLE TO PRESS WHEN ALL FIELDS ARE POPULATED
     public void handleTextFieldKeyRelease(KeyEvent event) {
         if (    !txtFirstName.getText().isEmpty() && 
                 !txtLastName.getText().isEmpty() &&
@@ -60,7 +60,6 @@ public class RegisterController implements Initializable {
                 !txtPassword.getText().isEmpty() &&
                 !txtSecretQuestion.getText().isEmpty() &&
                 !txtSecretAnswer.getText().isEmpty()) {
-
             registerButton.setDisable(false);
         }
     }

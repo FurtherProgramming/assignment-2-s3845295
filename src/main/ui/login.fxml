@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
+<AnchorPane prefHeight="222.0" prefWidth="194.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
     <children>
-            <Label fx:id="isConnected" layoutX="23.0" layoutY="173.0" text="Status">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="214.0" prefWidth="211.0">
+         <children>
+            <TextField fx:id="txtUsername" promptText="Username">
+               <FlowPane.margin>
+                  <Insets bottom="10.0" />
+               </FlowPane.margin></TextField>
+            <PasswordField fx:id="txtPassword" promptText="Password">
+               <FlowPane.margin>
+                  <Insets bottom="10.0" />
+               </FlowPane.margin></PasswordField>
+                  <Label fx:id="isConnected" text="Status">
+               <FlowPane.margin>
+                  <Insets bottom="10.0" />
+               </FlowPane.margin></Label>
+            <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="126.0" layoutY="91.0" minWidth="126.0" mnemonicParsing="false" onAction="#Login" prefHeight="27.0" prefWidth="75.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="140.0">
+               <effect>
+                  <ColorAdjust brightness="0.05" contrast="1.0" hue="-1.0" />
+               </effect>
+               <font>
+                  <Font name="System Font" size="13.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets bottom="10.0" />
+               </FlowPane.margin></Button>
+            <Button mnemonicParsing="false" onAction="#handleForgotPassword" text="Forgot Password">
+               <FlowPane.margin>
+                  <Insets bottom="10.0" />
+               </FlowPane.margin></Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </FlowPane>
 
-            </Label>
-      <TextField fx:id="txtUsername" layoutX="78.0" layoutY="55.0" promptText="Username" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="55.0" />
-      <PasswordField fx:id="txtPassword" layoutX="78.0" layoutY="100.0" promptText="Password" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="100.0" />
-      <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="126.0" layoutY="91.0" mnemonicParsing="false" onAction="#Login" prefHeight="27.0" prefWidth="75.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="140.0">
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color red="0.9342105388641357" green="0.025950292125344276" blue="0.025950292125344276" />
-                     </color>
-                  </Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
-         <font>
-            <Font name="System Font" size="13.0" />
-         </font></Button>
 
 
     </children>
