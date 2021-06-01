@@ -49,23 +49,27 @@ public class ResetPasswordController implements Initializable {
             resetButton.setDisable(true);
             txtPassword.clear();
         }
-
     }
     
     private String getRandomPassword() {
+        String alphabet = "abcdefjklmnopqrstuvwxyz0123456789";
         String password = "";
         Random random = new Random();
         
         for (int i = 0; i < 8; i++) {
-            password += random.nextInt(9);
+            password += alphabet.charAt(random.nextInt(alphabet.length()-1));
         }
 
         return password;
     }
 
-    public void handleResetButton(ActionEvent event) {
-        if (resetPasswordModel.validSecretAnswer(user, txtAnswer.getText())) {
+    public void handleResetButton(ActionEvent event) throws IOException {
+        if (user.getSecretAnswer().equals(txtAnswer.getText())) {
             resetPasswordModel.resetPassword(user, txtPassword.getText());
+            SceneHelper.switchScene("homePage", event);
+        }
+        else {
+            statusLabel.setText("Incorrect answer for secret question, please try again");
         }
     }
 
