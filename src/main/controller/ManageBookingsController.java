@@ -1,6 +1,7 @@
 package main.controller;
 
 import javafx.collections.ObservableList;
+import main.helper.ManageBookingsHelper;
 import main.helper.SceneHelper;
 import main.model.ManageBookingsModel;
 
@@ -11,6 +12,8 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
+
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ListView;
@@ -22,7 +25,7 @@ import java.net.URL;
 import java.sql.SQLException;
 
 
-public class ManageAdminBookingsController implements Initializable {
+public class ManageBookingsController implements Initializable {
 
     // TODO
     // auto reject any booking requests that haven't been accepted by current day
@@ -31,6 +34,10 @@ public class ManageAdminBookingsController implements Initializable {
     private ArrayList<Integer> selectedBookingIDs = new ArrayList<Integer>();
     private ArrayList<Object[]> bookingArrayList = new ArrayList<Object[]>();
     private HashMap<Integer, Integer> listViewIndexBookingIDMap = new HashMap<Integer, Integer>();
+
+    private ManageBookingsHelper manageBookingsHelper = ManageBookingsHelper.getInstance();
+    private boolean userSpecificQuery;
+    private User user = User.getUser();
 
     @FXML
     ListView<String> bookingListView = new ListView<String>();
@@ -45,8 +52,17 @@ public class ManageAdminBookingsController implements Initializable {
     }
     
     private void refresh() {
+        userSpecificQuery = manageBookingsHelper.isUserSpecific();
         try {
-            manageBookingsModel.populateBookings(bookingArrayList);
+            if (userSpecificQuery) {
+                System.out.println("USER SPECIFIC");
+                manageBookingsModel.populateBookings(bookingArrayList, user);
+            }
+            else {
+                System.out.println("USER AGNOSTIC");
+                manageBookingsModel.populateBookings(bookingArrayList);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

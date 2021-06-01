@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 
 
 import main.helper.LockdownDate;
+import main.helper.ManageBookingsHelper;
 import main.object.Table;
 import main.object.Table.Status;
 import main.helper.CurrentDate;
@@ -36,6 +37,7 @@ public class TableViewController implements Initializable {
 
     private User user = User.getUser();
     private LockdownDate lockdownDate = LockdownDate.getLockdownDateInstance();
+    private ManageBookingsHelper manageBookingsHelper = ManageBookingsHelper.getInstance();
     
     private Table selectedTable;
     private LocalDate selectedDate;
@@ -332,12 +334,14 @@ public class TableViewController implements Initializable {
     // USER MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemUserBookings(ActionEvent event) throws IOException {
+        manageBookingsHelper.setUserSpecific(true);
         SceneHelper.switchScene("manageUserBookings", event);
     }
     
     // ADMIN MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemAdminBookings(ActionEvent event) throws IOException {
+        manageBookingsHelper.setUserSpecific(false);
         SceneHelper.switchScene("manageAdminBookings", event);
     }
 

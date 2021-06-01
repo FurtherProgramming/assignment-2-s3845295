@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
+
 import javafx.scene.Node;
 
 public class SceneHelper {
@@ -17,7 +19,6 @@ public class SceneHelper {
 
     }
 
-    
     public static void switchScene(String sceneName, ActionEvent event) throws IOException {
 
         sceneName = "../ui/" + sceneName +  ".fxml";
@@ -30,7 +31,6 @@ public class SceneHelper {
             primaryStage = ((Stage)((Node)event.getSource()).getScene().getWindow());
         }
         primaryStage.setScene(scene);
-        
     }
     
     public static void newScene(String sceneName, ActionEvent event) throws IOException {
