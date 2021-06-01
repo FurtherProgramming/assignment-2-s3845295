@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 
-import main.helper.User;
+import main.object.User;
 import main.model.LoginModel;
 import main.helper.SceneHelper;
 

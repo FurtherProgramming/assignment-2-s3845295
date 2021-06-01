@@ -17,7 +17,7 @@ import main.helper.LockdownDate;
 import main.object.Table;
 import main.object.Table.Status;
 import main.helper.CurrentDate;
-import main.helper.User;
+import main.object.User;
 import main.model.TableViewModel;
 import main.helper.SceneHelper;
 

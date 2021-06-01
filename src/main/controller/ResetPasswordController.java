@@ -8,7 +8,7 @@ import main.helper.SceneHelper;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.TextField;
-import main.helper.User;
+import main.object.User;
 import main.model.ResetPasswordModel;
 
 import java.util.Random;

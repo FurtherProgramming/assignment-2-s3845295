@@ -1,4 +1,4 @@
-package main.helper;
+package main.object;
 
 import main.SQLConnection;
 
@@ -42,14 +42,14 @@ public class User {
     public int getUserID() {
         return userID;
     }
-    public void setUserID(int _userID) {
-        this.userID = _userID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String _name) {
-        this.firstName = _name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
     public String getLastName() {
         return lastName;
@@ -66,14 +66,14 @@ public class User {
     public String getUsername() {
         return username;
     }
-    public void setUsername(String _username) {
-        this.username = _username;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getPassword() {
         return password;
     }
-    public void setPassword(String _password) {
-        this.password = _password;
+    public void setPassword(String password) {
+        this.password = password;
     }
     public String getSecretQuestion() {
         return secretQuestion;
@@ -91,8 +91,8 @@ public class User {
     public boolean isAdmin(){
         return admin;
     }
-    public void setAdmin(boolean _admin) {
-        this.admin = _admin;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
     public int getLastBookingID() {
         return lastBookingID;

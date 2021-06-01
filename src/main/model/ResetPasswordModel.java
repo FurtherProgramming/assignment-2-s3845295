@@ -1,7 +1,7 @@
 package main.model;
 
 import main.SQLConnection;
-import main.helper.User;
+import main.object.User;
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
