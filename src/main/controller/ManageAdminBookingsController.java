@@ -16,20 +16,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Label;
+import main.object.User;
 
 import java.net.URL;
 import java.sql.SQLException;
 
 
-public class ManageBookingsController implements Initializable {
+public class ManageAdminBookingsController implements Initializable {
 
     // TODO
     // auto reject any booking requests that haven't been accepted by current day
 
     private ManageBookingsModel manageBookingsModel = new ManageBookingsModel();
-    
     private ArrayList<Integer> selectedBookingIDs = new ArrayList<Integer>();
-
     private ArrayList<Object[]> bookingArrayList = new ArrayList<Object[]>();
     private HashMap<Integer, Integer> listViewIndexBookingIDMap = new HashMap<Integer, Integer>();
 

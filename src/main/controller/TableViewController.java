@@ -329,10 +329,16 @@ public class TableViewController implements Initializable {
         node.setScaleY(1);
     }
     
+    // USER MENU
+    // OPEN BOOKINGS MANAGEMENT
+    public void handleMenuItemUserBookings(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("manageUserBookings", event);
+    }
+    
     // ADMIN MENU
     // OPEN BOOKINGS MANAGEMENT
-    public void handleMenuItemManageBookings(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("manageBookings", event);
+    public void handleMenuItemAdminBookings(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("manageAdminBookings", event);
     }
 
     // OPEN LOCKDOWN DATE SELECTION

@@ -56,7 +56,7 @@ public class ResetPasswordController implements Initializable {
         String password = "";
         Random random = new Random();
         
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 2; i++) {
             password += alphabet.charAt(random.nextInt(alphabet.length()-1));
         }
 
