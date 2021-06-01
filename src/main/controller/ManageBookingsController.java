@@ -1,6 +1,7 @@
 package main.controller;
 
 import javafx.collections.ObservableList;
+import main.helper.CurrentDate;
 import main.helper.ManageBookingsHelper;
 import main.helper.SceneHelper;
 import main.model.ManageBookingsModel;
@@ -19,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import main.object.User;
 
 import java.net.URL;
@@ -43,6 +45,10 @@ public class ManageBookingsController implements Initializable {
     ListView<String> bookingListView = new ListView<String>();
     @FXML
     Label statusLabel;
+    @FXML
+    Button acceptButton;
+    @FXML
+    Button rejectButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,10 +82,31 @@ public class ManageBookingsController implements Initializable {
         else {
             statusLabel.setText("");
         }
+
+    }
+    
+    private void validateButtons() {
+        disableButtons(false);
+        if (selectedBookingIDs.size() == 0) {
+            disableButtons(true);
+        }
+    }
+    
+    private void disableButtons(boolean disable) {
+        if (!userSpecificQuery) {
+            acceptButton.setDisable(disable);
+        }
+        rejectButton.setDisable(disable);
     }
 
     private void sceneRefresh(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("manageBookings", event);
+        if (userSpecificQuery) {
+            SceneHelper.switchScene("ManageUserBookings", event);
+        }
+        else {
+            SceneHelper.switchScene("ManageAdminBookings", event);
+        }
+        
     }
 
     private void populateBookingListView() {
@@ -111,6 +138,7 @@ public class ManageBookingsController implements Initializable {
         }
 
         System.out.println("selectedBookingIDs" + selectedBookingIDs);
+        validateButtons();
     }
 
     @FXML
@@ -131,7 +159,11 @@ public class ManageBookingsController implements Initializable {
     }
     
     public void handleBackButton(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("tableView", event);
+        SceneHelper.switchScene("TableView", event);
+    }
+    
+    public void handleEditButton(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("EditBooking", event, selectedBookingIDs.get(0));
     }
 
 }

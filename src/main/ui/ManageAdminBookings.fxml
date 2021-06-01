@@ -21,8 +21,8 @@
                   <Label fx:id="statusLabel" alignment="TOP_LEFT" text="Label" />
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button mnemonicParsing="false" onAction="#handleAcceptButton" text="Accept" />
-                        <Button mnemonicParsing="false" onAction="#handleRejectButton" text="Reject" />
+                      <Button fx:id="acceptButton" mnemonicParsing="false" onAction="#handleAcceptButton" text="Accept" />
+                        <Button fx:id="rejectButton" mnemonicParsing="false" onAction="#handleRejectButton" text="Reject" />
                         <Button mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
                     </buttons>
                      <opaqueInsets>

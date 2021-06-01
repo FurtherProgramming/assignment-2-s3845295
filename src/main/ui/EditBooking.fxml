@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="137.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EditBookingController">
+   <children>
+      <TitledPane collapsible="false" prefHeight="400.0" prefWidth="600.0" text="Edit Booking" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <BorderPane prefHeight="142.0" prefWidth="345.0">
+               <top>
+                  <Label alignment="TOP_LEFT" text="Please select a new table and booking date. WARNING: This action will delete the selected booking." wrapText="true" BorderPane.alignment="TOP_LEFT" />
+               </top>
+               <bottom>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <buttons>
+                      <Button mnemonicParsing="false" onAction="#handleOKButton" text="OK" />
+                        <Button mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel" />
+                    </buttons>
+                  </ButtonBar>
+               </bottom>
+            </BorderPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

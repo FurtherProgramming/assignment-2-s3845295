@@ -286,13 +286,6 @@ public class TableViewController implements Initializable {
         refresh();
     }
 
-    // LOG OUT OF APPLICATION
-    @FXML
-    public void handleLogOut(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("homePage", event);
-    }
-
-
     // CHANGE SELECTED TABLE COLOUR, SET selectedTable to table
     @FXML
     public void handleMouseClick(MouseEvent event) {
@@ -330,24 +323,30 @@ public class TableViewController implements Initializable {
         node.setScaleX(1);
         node.setScaleY(1);
     }
+
+    // LOG OUT OF APPLICATION
+    @FXML
+    public void handleLogOut(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("HomePage", event);
+    }
     
     // USER MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemUserBookings(ActionEvent event) throws IOException {
         manageBookingsHelper.setUserSpecific(true);
-        SceneHelper.switchScene("manageUserBookings", event);
+        SceneHelper.switchScene("ManageUserBookings", event);
     }
     
     // ADMIN MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemAdminBookings(ActionEvent event) throws IOException {
         manageBookingsHelper.setUserSpecific(false);
-        SceneHelper.switchScene("manageAdminBookings", event);
+        SceneHelper.switchScene("ManageAdminBookings", event);
     }
 
     // OPEN LOCKDOWN DATE SELECTION
     public void handleMenuItemLockdown(ActionEvent event) throws IOException {
-        SceneHelper.newScene("lockdownDatePicker", event);
+        SceneHelper.newScene("Lockdown", event);
     }
 
     // LOCKDOWN TABLE FOR SELECTED DATES

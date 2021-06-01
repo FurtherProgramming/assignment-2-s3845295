@@ -54,7 +54,7 @@ public class LoginController implements Initializable {
                 isConnected.setText("Logged in successfully");
 
                 // SWITCH TO TABLEVIEW SCENE
-                SceneHelper.switchScene("tableView", event);
+                SceneHelper.switchScene("TableView", event);
             }
             else {
                 isConnected.setText("username and password is incorrect");
@@ -78,7 +78,7 @@ public class LoginController implements Initializable {
         User user = User.getUser();
 //        user.setUsername(txtUsername.getText());
         user.setUser(txtUsername.getText());
-        SceneHelper.switchScene("resetPassword", event);
+        SceneHelper.switchScene("ResetPassword", event);
     }
 
 

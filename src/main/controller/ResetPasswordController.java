@@ -66,7 +66,7 @@ public class ResetPasswordController implements Initializable {
     public void handleResetButton(ActionEvent event) throws IOException {
         if (user.getSecretAnswer().equals(txtAnswer.getText())) {
             resetPasswordModel.resetPassword(user, txtPassword.getText());
-            SceneHelper.switchScene("homePage", event);
+            SceneHelper.switchScene("Homepage", event);
         }
         else {
             statusLabel.setText("Incorrect answer for secret question, please try again");
@@ -74,7 +74,7 @@ public class ResetPasswordController implements Initializable {
     }
 
     public void handleCancelButton(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("homePage", event);
+        SceneHelper.switchScene("HomePage", event);
     }
 
     

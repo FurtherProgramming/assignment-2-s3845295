@@ -80,7 +80,7 @@ public class RegisterController implements Initializable {
             e.printStackTrace();
         }
         finally {
-            SceneHelper.switchScene("tableView", event);
+            SceneHelper.switchScene("TableView", event);
         }
     }
 

@@ -11,12 +11,12 @@ public class HomePageController {
 
     public void loginButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO LOGIN.FXML
-        SceneHelper.switchScene("login", event);
+        SceneHelper.switchScene("Login", event);
     }
     
     public void registerButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO REGISTER.FXML
-        SceneHelper.switchScene("register", event);
+        SceneHelper.switchScene("Register", event);
     }
 
 

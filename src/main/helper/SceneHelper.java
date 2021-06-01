@@ -32,6 +32,22 @@ public class SceneHelper {
         }
         primaryStage.setScene(scene);
     }
+
+    // OVERLOAD -- ATTACH USERDATA
+    public static void switchScene(String sceneName, ActionEvent event, Object userData) throws IOException {
+
+        sceneName = "../ui/" + sceneName +  ".fxml";
+
+        Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
+        Scene scene = new Scene(root);
+
+        // SWITCH primaryStage TO scene
+        if (primaryStage == null) {
+            primaryStage = ((Stage)((Node)event.getSource()).getScene().getWindow());
+        }
+        primaryStage.setScene(scene);
+        primaryStage.setUserData(userData);
+    }
     
     public static void newScene(String sceneName, ActionEvent event) throws IOException {
 
@@ -43,7 +59,20 @@ public class SceneHelper {
         
         stage.setScene(scene);
         stage.show();
-        
+    }
+
+    // OVERLOAD -- ATTACH USERDATA
+    public static void newScene(String sceneName, ActionEvent event, Object userData) throws IOException {
+
+        sceneName = "../ui/" + sceneName +  ".fxml";
+
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setUserData(userData);
+        stage.show();
     }
     
     public static void close(ActionEvent event) {
