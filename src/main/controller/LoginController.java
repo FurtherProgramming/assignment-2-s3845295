@@ -4,9 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
+
+import main.helper.User;
 import main.model.LoginModel;
 import main.helper.SceneHelper;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,11 +27,14 @@ public class LoginController implements Initializable {
     private TextField txtUsername;
     @FXML
     private TextField txtPassword;
+    @FXML
+    private Button forgotButton;
 
 
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        forgotButton.setDisable(true);
         if (loginModel.isDbConnected()) {
             isConnected.setText("Connected");
         }
@@ -55,10 +63,22 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    // TODO: IMPLEMENT
-    public void handleForgotPassword(ActionEvent event) {
+    
+    public void handleKeyRelease(KeyEvent event) {
+        if (!txtUsername.getText().isEmpty()) {
+            forgotButton.setDisable(false);
+        }
+        else {
+            forgotButton.setDisable(true);
+        }
+    }
+    
+    public void handleForgotPassword(ActionEvent event) throws IOException, SQLException {
         System.out.println("handleForgotPassword()");
+        User user = User.getUser();
+//        user.setUsername(txtUsername.getText());
+        user.setUser(txtUsername.getText());
+        SceneHelper.switchScene("resetPassword", event);
     }
 
 
