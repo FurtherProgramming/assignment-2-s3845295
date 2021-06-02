@@ -37,7 +37,6 @@ public class TableViewController implements Initializable {
 
     private User user = User.getUser();
     private LockdownDate lockdownDate = LockdownDate.getLockdownDateInstance();
-    private ManageBookingsHelper manageBookingsHelper = ManageBookingsHelper.getInstance();
     
     private Table selectedTable;
     private LocalDate selectedDate;
@@ -224,11 +223,12 @@ public class TableViewController implements Initializable {
             validateLockdownButton();
         }
     }
-    
-    private void validateBookButton() {
 
+    // VALIDATE BOOK BUTTON
+    private void validateBookButton() {
         System.out.println("validateBookButton");
         try {
+            // DISABLE BUTTON IF USER HAS A PREVIOUS BOOKING
             setBookButtonDisable(tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
             System.out.println("setBookButtonDisable: " + tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
         }
@@ -237,18 +237,17 @@ public class TableViewController implements Initializable {
         }
     }
 
-    private void setBookButtonDisable(boolean disable) {
-        bookButton.setDisable(disable);
-    }
-
     // VALIDATE LOCKDOWN BUTTON
     private void validateLockdownButton() {
         if (lockdownDate.getLockdownStartDate() != null && lockdownDate.getLockdownEndDate() != null) {
             setLockdownButtonDisable(false);
         }
     }
-    
-    private void setLockdownButtonDisable(Boolean disable) {
+
+    private void setBookButtonDisable(boolean disable) {
+        bookButton.setDisable(disable);
+    }
+    private void setLockdownButtonDisable(boolean disable) {
         lockdownButton.setDisable(disable);
     }
 
@@ -260,7 +259,6 @@ public class TableViewController implements Initializable {
     }
 
 
-    @FXML
     public void handleDatePick(ActionEvent event) {
         selectedDate = datePicker.getValue();
         System.out.println("handleDatePick()");
@@ -269,9 +267,7 @@ public class TableViewController implements Initializable {
     }
 
     // BOOK TABLE
-    @FXML
     public void handleBookButton(ActionEvent event) throws SQLException {
-
         int tableID = selectedTable.getTableID();
         
         if (selectedDate == null) {
@@ -287,9 +283,7 @@ public class TableViewController implements Initializable {
     }
 
     // CHANGE SELECTED TABLE COLOUR, SET selectedTable to table
-    @FXML
     public void handleMouseClick(MouseEvent event) {
-
         Node node = (Node)event.getSource();
         Rectangle rectangle = (Rectangle)node;
         Table table = rectangleTableMap.get(rectangle);
@@ -309,38 +303,31 @@ public class TableViewController implements Initializable {
     }
 
     // ANIMATE MOUSE HOVER
-    @FXML 
     public void handleMouseEnter(MouseEvent event) {
         Node node = (Node)event.getSource();
-        
         node.setScaleX(1.05);
         node.setScaleY(1.05);
     }
-    @FXML
     public void handleMouseExit(MouseEvent event) {
         Node node = (Node)event.getSource();
-
         node.setScaleX(1);
         node.setScaleY(1);
     }
 
     // LOG OUT OF APPLICATION
-    @FXML
     public void handleLogOut(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("HomePage", event);
+        SceneHelper.switchScene("Homepage", event);
     }
     
     // USER MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemUserBookings(ActionEvent event) throws IOException {
-        manageBookingsHelper.setUserSpecific(true);
         SceneHelper.switchScene("ManageUserBookings", event);
     }
     
     // ADMIN MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemAdminBookings(ActionEvent event) throws IOException {
-        manageBookingsHelper.setUserSpecific(false);
         SceneHelper.switchScene("ManageAdminBookings", event);
     }
 
