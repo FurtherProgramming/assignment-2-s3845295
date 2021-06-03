@@ -1,8 +1,6 @@
 package main.controller;
 
 import javafx.collections.ObservableList;
-import main.helper.CurrentDate;
-import main.helper.ManageBookingsHelper;
 import main.helper.SceneHelper;
 import main.model.ManageBookingsModel;
 
@@ -24,7 +22,7 @@ import javafx.scene.control.Button;
 import java.net.URL;
 
 
-class ManageBookingsController implements Initializable {
+abstract class AbstractManageBookingsController implements Initializable {
 
     // TODO
     // auto reject any booking requests that haven't been accepted by current day
@@ -51,9 +49,7 @@ class ManageBookingsController implements Initializable {
         refresh();
     }
 
-    // OVERRIDDEN METHOD
-    protected void refresh() {
-    }
+    protected abstract void refresh();
     
     protected void validateButtons() {
         disableButtons(false);
@@ -62,13 +58,9 @@ class ManageBookingsController implements Initializable {
         }
     }
 
-    // OVERRIDDEN METHOD
-    protected void disableButtons(boolean disable) {
-    }
+    protected abstract void disableButtons(boolean disable);
 
-    // OVERRIDDEN METHOD
-    protected void sceneRefresh(ActionEvent event) throws IOException {
-    }
+    protected abstract void sceneRefresh(ActionEvent event) throws IOException;
 
     protected void populateBookingListView() {
         System.out.println("populateBookingListView()");
@@ -87,7 +79,6 @@ class ManageBookingsController implements Initializable {
 
         }
     }
-
 
     public void handleListViewSelection(MouseEvent event) {
         System.out.println("handleListViewSelection()");

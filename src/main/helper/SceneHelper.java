@@ -51,7 +51,7 @@ public class SceneHelper {
     
     public static void newScene(String sceneName, ActionEvent event) throws IOException {
 
-        sceneName = "../ui/" + sceneName +  ".fxml";
+        sceneName = "../ui/" + sceneName + ".fxml";
         
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));

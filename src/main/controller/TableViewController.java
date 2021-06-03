@@ -14,7 +14,6 @@ import javafx.scene.paint.Color;
 
 
 import main.helper.LockdownDate;
-import main.helper.ManageBookingsHelper;
 import main.object.Table;
 import main.object.Table.Status;
 import main.helper.CurrentDate;
@@ -31,8 +30,7 @@ import java.util.HashMap;
 
 
 public class TableViewController implements Initializable {
-    
-    
+
     private TableViewModel tableViewModel = new TableViewModel();
 
     private User user = User.getUser();
@@ -53,7 +51,6 @@ public class TableViewController implements Initializable {
     private HashMap<Rectangle, Table> rectangleTableMap = new HashMap<Rectangle, Table>();
     private HashMap<Status, String> statusTextMap = new HashMap<Status, String>();
 
-    
     @FXML
     private Label statusLabel;
     @FXML
@@ -110,7 +107,6 @@ public class TableViewController implements Initializable {
 
     private Table[] tableArray;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -151,7 +147,6 @@ public class TableViewController implements Initializable {
         
     }
 
-    
     private void initialiseStatusColourMap() {
         statusColourMap.put(Status.AVAILABLE, colourAvailable);
         statusColourMap.put(Status.BOOKED, colourBooked);
@@ -257,7 +252,6 @@ public class TableViewController implements Initializable {
         lockdownButton.setDisable(true);
         lockdownButton.setVisible(true);
     }
-
 
     public void handleDatePick(ActionEvent event) {
         selectedDate = datePicker.getValue();

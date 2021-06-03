@@ -1,29 +1,21 @@
 package main.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import main.helper.SceneHelper;
-import main.object.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ManageUserBookings extends ManageBookingsController {
-    
-    User user = User.getUser();
+public class ManageAdminBookingsController extends AbstractManageBookingsController {
 
-    @FXML
-    protected Button editButton;
-    
     protected void refresh() {
 
-        try {manageBookingsModel.populateBookings(bookingArrayList, user);}
+        try {manageBookingsModel.populateBookings(bookingArrayList);}
         catch (SQLException e) {e.printStackTrace();}
 
         System.out.println(bookingArrayList);
 
-        super.populateBookingListView();
+        populateBookingListView();
 
         if (bookingArrayList.size() == 0) { statusLabel.setText("There are no bookings to accept/reject"); }
         else { statusLabel.setText(""); }
@@ -31,16 +23,18 @@ public class ManageUserBookings extends ManageBookingsController {
     }
 
     protected void disableButtons(boolean disable) {
-        editButton.setDisable(disable);
+        acceptButton.setDisable(disable);
         rejectButton.setDisable(disable);
-
     }
 
     protected void sceneRefresh(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("ManageUserBookings", event);
+        SceneHelper.switchScene("ManageAdminBookings", event);
     }
 
-    public void handleEditButton(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("EditBooking", event, selectedBookingIDs.get(0));
+    public void handleAcceptButton(ActionEvent event) throws SQLException, IOException {
+        for (Integer bookingID : selectedBookingIDs) {
+            manageBookingsModel.acceptBooking(bookingID);
+        }
+        sceneRefresh(event);
     }
 }
