@@ -24,14 +24,12 @@ public class ManageBookingsModel {
     
     public void populateBookings(ArrayList<Object[]> bookingArrayList) throws SQLException {
         System.out.println("ManageBookingsModel.populateBookings()");
-        
 
-
-        String sqlQUERYBooking =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username, Employee.ID " +
+        String sqlQUERY =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username, Employee.ID " +
                                     "FROM Booking " +
                                     "INNER JOIN Employee ON Booking.EmployeeID  = Employee.id " +
                                     "WHERE Date >= ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERYBooking)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
 
             preparedStatement.setDate(1, Date.valueOf(CurrentDate.getCurrentDate()));
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -58,11 +56,12 @@ public class ManageBookingsModel {
     public void populateBookings(ArrayList<Object[]> bookingArrayList, User user) throws SQLException {
         System.out.println("ManageBookingsModel.populateBookings(user)");
 
-        String sqlQUERYBooking =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username " +
+        String sqlQUERY =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username " +
                                     "FROM Booking " +
                                     "INNER JOIN Employee ON Booking.EmployeeID  = Employee.ID " +
                                     "WHERE Date >= ? AND Employee.ID = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERYBooking)) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
             preparedStatement.setDate(1, Date.valueOf(CurrentDate.getCurrentDate()));
             preparedStatement.setInt(2, user.getUserID());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -85,7 +84,7 @@ public class ManageBookingsModel {
         }
     }
     
-    public void acceptBooking(int bookingID) throws SQLException {
+    public void acceptBooking(int bookingID) {
 
         String sqlUPDATE =  "UPDATE Booking " +
                             "SET Confirmed = true " +

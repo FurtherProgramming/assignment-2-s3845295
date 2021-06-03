@@ -19,7 +19,7 @@ public class ResetPasswordModel {
     public void resetPassword(User user, String password) {
         String sqlUPDATE =  "UPDATE Employee " +
                             "SET Password = ? " +
-                            "Where ID = ?";
+                            "WHERE ID = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUPDATE)) {
             preparedStatement.setString(1, password);

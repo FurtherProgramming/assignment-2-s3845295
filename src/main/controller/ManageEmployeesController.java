@@ -99,6 +99,7 @@ public class ManageEmployeesController implements Initializable {
     
     public void handleAddButton(ActionEvent event) {
         // OPEN ADD
+
     }
     
     public void handleEditButton(ActionEvent event) throws IOException {
@@ -111,6 +112,10 @@ public class ManageEmployeesController implements Initializable {
     
     public void handleDeleteButton(ActionEvent event) {
         // delete selected IDS
+        for (int employeeID : selectedEmployeeIDs) {
+            manageEmployeesModel.removeEmployee(employeeID);
+        }
+
     }
     
     

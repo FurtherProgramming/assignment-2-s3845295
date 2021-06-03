@@ -68,12 +68,67 @@ public class ManageEmployeesModel {
             preparedStatement.executeUpdate();
         }
     }
-    
-    public void editEmployee() {
-        
+    // OVERLOAD FOR SETTING ADMIN
+    public void addEmployee(String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer, boolean admin) throws SQLException {
+        System.out.println("ManageEmployeesModel.addEmployee(OVERLOAD)");
+
+        String sqlINSERT = "INSERT INTO Employee (FirstName, LastName, Username, Password, Admin, Role, SecretQuestion, SecretAnswer) VALUES (?,?,?,?,?,?,?,?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlINSERT)) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, username);
+            preparedStatement.setString(4, password);
+            preparedStatement.setBoolean(5, admin);
+            preparedStatement.setString(6, role);
+            preparedStatement.setString(7, secretQuestion);
+            preparedStatement.setString(8, secretAnswer);
+            preparedStatement.executeUpdate();
+        }
     }
     
-    public void removeEmployee() {
+    public void editEmployee(int employeeID, String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer, boolean admin) throws SQLException {
+        System.out.println("ManageEmployeesModel.editEmployee()");
 
+        String sqlUPDATE =  "UPDATE Employee " +
+                            "SET FirstName = ? " +
+                            "SET LastName = ? " +
+                            "SET Username = ? " +
+                            "SET Password = ? " +
+                            "SET Admin = ? " +
+                            "SET Role = ? " +
+                            "SET SecretQuestion = ? " +
+                            "SET SecretAnswer = ? " +
+                            "WHERE ID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUPDATE)) {
+            preparedStatement.setInt(9, employeeID);
+            
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, username);
+            preparedStatement.setString(4, password);
+            preparedStatement.setBoolean(5, admin);
+            preparedStatement.setString(6, role);
+            preparedStatement.setString(7, secretQuestion);
+            preparedStatement.setString(8, secretAnswer);
+
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void removeEmployee(int employeeID) {
+
+        String sqlDELETE =  "DELETE " +
+                            "FROM Employee " +
+                            "WHERE ID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlDELETE)) {
+            preparedStatement.setInt(1, employeeID);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

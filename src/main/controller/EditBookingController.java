@@ -24,7 +24,12 @@ public class EditBookingController implements Initializable {
     
     public void handleOKButton(ActionEvent event) throws IOException {
         int bookingID = (int)(((Node)event.getSource()).getScene().getWindow()).getUserData();
-        manageBookingsModel.rejectBooking(bookingID);
+        try {
+            manageBookingsModel.rejectBooking(bookingID);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         SceneHelper.switchScene("TableView", event);
     }
     
