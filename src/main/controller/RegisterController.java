@@ -8,8 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 
-import main.model.RegisterModel;
+import main.model.ManageEmployeesModel;
 import main.helper.SceneHelper;
+import main.object.User;
 
 
 import java.io.IOException;
@@ -19,10 +20,10 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
 
-    public RegisterModel registerModel = new RegisterModel();
+    private ManageEmployeesModel manageEmployeesModel = new ManageEmployeesModel();
+    private User user = User.getUser();
 
-    @FXML
-    private Label isConnected;
+
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -37,15 +38,10 @@ public class RegisterController implements Initializable {
     private TextField txtSecretQuestion;
     @FXML
     private TextField txtSecretAnswer;
-
     @FXML
     private Button registerButton;
 
-    public RegisterController() {
 
-    }
-
-    // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registerButton.setDisable(true);
@@ -65,16 +61,17 @@ public class RegisterController implements Initializable {
     }
     
     public void register(ActionEvent event) throws IOException {
-        try {
-            String firstName = txtFirstName.getText();
-            String lastName = txtLastName.getText();
-            String role = txtRole.getText();
-            String username = txtUsername.getText();
-            String password = txtPassword.getText();
-            String secretQuestion = txtSecretQuestion.getText();
-            String secretAnswer = txtSecretAnswer.getText();
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String role = txtRole.getText();
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        String secretQuestion = txtSecretQuestion.getText();
+        String secretAnswer = txtSecretAnswer.getText();
 
-            registerModel.registerToDb(firstName, lastName, role, username, password, secretQuestion, secretAnswer);
+        try {
+            manageEmployeesModel.addEmployee(firstName, lastName, role, username, password, secretQuestion, secretAnswer);
+            user.setUser(username);
         }
         catch (SQLException e) {
             e.printStackTrace();

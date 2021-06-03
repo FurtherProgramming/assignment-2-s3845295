@@ -58,7 +58,7 @@
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#handleMenuItemAdminBookings" text="Manage Bookings" />
                           <MenuItem mnemonicParsing="false" onAction="#handleMenuItemLockdown" text="Manage Lockdown" />
-                              <MenuItem mnemonicParsing="false" text="Manage Employees" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleMenuItemManageEmployees" text="Manage Employees" />
                               <MenuItem mnemonicParsing="false" text="Generate Report" />
                         </items>
                       </Menu>
