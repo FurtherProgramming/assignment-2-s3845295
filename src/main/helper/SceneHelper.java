@@ -73,9 +73,9 @@ public class SceneHelper {
         stage.close();
     }
     
-    public static Object getStageUserData(ActionEvent event) {
-        return ((Node)event.getSource()).getScene().getUserData();
-    }
+//    public static Object getStageUserData(ActionEvent event) {
+//        return ((Node)event.getSource()).getScene().getUserData();
+//    }
 
     public static Object getPrimaryStageUserData() {
         System.out.println("SceneHelper.getPrimaryStageUserData()");
@@ -83,6 +83,4 @@ public class SceneHelper {
         System.out.println(primaryStage.getUserData());
         return primaryStage.getUserData();
     }
-
-
 }

@@ -324,17 +324,21 @@ public class TableViewController implements Initializable {
     public void handleMenuItemAdminBookings(ActionEvent event) throws IOException {
         SceneHelper.switchScene("ManageAdminBookings", event);
     }
-
-    // OPEN EMPLOYEE MANAGEMENT
-    public void handleMenuItemManageEmployees(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("ManageEmployees", event);
-    }
-
+    
     // OPEN LOCKDOWN DATE SELECTION
     public void handleMenuItemLockdown(ActionEvent event) throws IOException {
         SceneHelper.newScene("Lockdown", event);
     }
 
+    // OPEN EMPLOYEE MANAGEMENT
+    public void handleMenuItemManageEmployees(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("ManageEmployees", event);
+    }
+    
+    // OPEN GENERATE REPORTS
+    public void handleMenuItemGenerateReports(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("GenerateReports", event);
+    }
 
     // LOCKDOWN TABLE FOR SELECTED DATES
     public void handleLockdownButton(ActionEvent event) throws SQLException {
