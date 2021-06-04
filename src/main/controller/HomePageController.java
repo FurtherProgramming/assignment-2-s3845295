@@ -16,7 +16,7 @@ public class HomePageController {
     
     public void registerButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO REGISTER.FXML
-        SceneHelper.switchScene("Register", event);
+        SceneHelper.switchScene("EmployeeRegister", event);
     }
 
 

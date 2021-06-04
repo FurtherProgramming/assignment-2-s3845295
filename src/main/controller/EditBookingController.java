@@ -23,7 +23,7 @@ public class EditBookingController implements Initializable {
     }
     
     public void handleOKButton(ActionEvent event) throws IOException {
-        int bookingID = (int)(((Node)event.getSource()).getScene().getWindow()).getUserData();
+        int bookingID = (int) SceneHelper.getStageUserData(event);
         try {
             manageBookingsModel.rejectBooking(bookingID);
         }

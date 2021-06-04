@@ -51,6 +51,37 @@ public class ManageEmployeesModel {
             e.printStackTrace();
         }
     }
+    
+    public Object[] getEmployeeInfo(int employeeID) {
+
+        Object[] employeeInfo = new Object[8];
+
+        String sqlQUERY =   "SELECT * " +
+                            "FROM Employee " +
+                            "WHERE ID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+            preparedStatement.setInt(1, employeeID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            employeeInfo[0] = resultSet.getInt(1);      // ID
+            employeeInfo[1] = resultSet.getString(2) + " " + resultSet.getString(3);    // NAME
+            employeeInfo[2] = resultSet.getString(4);   // USERNAME
+            employeeInfo[3] = resultSet.getString(5);   // PASSWORD
+            employeeInfo[4] = resultSet.getString(8);   // ROLE
+            employeeInfo[5] = resultSet.getString(9);   // SECRET QUESTION
+            employeeInfo[6] = resultSet.getString(10);   // SECRET ANSWER
+            employeeInfo[7] = resultSet.getBoolean(6);  // ADMIN
+            System.out.println("ADMIN: " + employeeInfo[7]);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return employeeInfo;
+    }
 
     public void addEmployee(String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer) throws SQLException {
         System.out.println("ManageEmployeesModel.addEmployee()");
@@ -91,14 +122,14 @@ public class ManageEmployeesModel {
         System.out.println("ManageEmployeesModel.editEmployee()");
 
         String sqlUPDATE =  "UPDATE Employee " +
-                            "SET FirstName = ? " +
-                            "SET LastName = ? " +
-                            "SET Username = ? " +
-                            "SET Password = ? " +
-                            "SET Admin = ? " +
-                            "SET Role = ? " +
-                            "SET SecretQuestion = ? " +
-                            "SET SecretAnswer = ? " +
+                            "SET FirstName = ?, " +
+                            "LastName = ?, " +
+                            "Username = ?, " +
+                            "Password = ?, " +
+                            "Admin = ?, " +
+                            "Role = ?, " +
+                            "SecretQuestion = ?, " +
+                            "SecretAnswer = ? " +
                             "WHERE ID = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUPDATE)) {

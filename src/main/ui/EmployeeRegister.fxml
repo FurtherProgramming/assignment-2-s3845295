@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="388.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeRegisterController">
+   <children>
+      <TitledPane animated="false" collapsible="false" prefHeight="469.0" prefWidth="279.0" text="Register" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutY="16.0" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="442.0" prefWidth="277.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="txtFirstName" onKeyReleased="#handleTextFieldKeyRelease" promptText="First Name" />
+                        <TextField fx:id="txtLastName" onKeyReleased="#handleTextFieldKeyRelease" promptText="Last Name" />
+                        <TextField fx:id="txtRole" onKeyReleased="#handleTextFieldKeyRelease" promptText="Role" />
+                        <TextField fx:id="txtUsername" onKeyReleased="#handleTextFieldKeyRelease" promptText="Username" />
+                        <TextField fx:id="txtPassword" onKeyReleased="#handleTextFieldKeyRelease" promptText="Password" />
+                        <TextField fx:id="txtSecretQuestion" onKeyReleased="#handleTextFieldKeyRelease" promptText="Secret Question" />
+                        <TextField fx:id="txtSecretAnswer" onKeyReleased="#handleTextFieldKeyRelease" promptText="Answer" />
+                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#save" text="Save" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

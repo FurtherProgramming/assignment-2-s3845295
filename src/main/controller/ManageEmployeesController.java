@@ -49,6 +49,7 @@ public class ManageEmployeesController implements Initializable {
     }
     
     private void refresh() {
+
         try {manageEmployeesModel.populateEmployees(employeeArrayList);}
         catch (SQLException e) {e.printStackTrace();}
 
@@ -58,7 +59,9 @@ public class ManageEmployeesController implements Initializable {
 
         if (employeeArrayList.size() == 0) { statusLabel.setText("There are no bookings to accept/reject"); }
         else { statusLabel.setText(""); }
-        
+
+        selectedEmployeeIDs.clear();
+        validateButtons();
     }
 
     protected void populateEmployeeListView() {
@@ -67,14 +70,27 @@ public class ManageEmployeesController implements Initializable {
         String[] categories = {"Employee ID", "Name", "Username", "Password", "Role", "Secret Question", "Secret Answer", "Admin"};
         int listCount = 0;
 
-        for (Object[] booking : employeeArrayList) {
+        for (Object[] employee : employeeArrayList) {
             String listString = "";
             for (int i = 0; i < categories.length; i++) {
-                listString += categories[i] + ": " + booking[i] + " | ";
+                listString += categories[i] + ": " + employee[i] + " | ";
             }
             employeeListView.getItems().add(listString);
-            listViewIndexEmployeeIDMap.put(listCount, (Integer)booking[0]);
+            listViewIndexEmployeeIDMap.put(listCount, (Integer)employee[0]);
             listCount++;
+        }
+    }
+    
+    private void validateButtons() {
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
+
+        if (selectedEmployeeIDs.size() > 0) {
+            deleteButton.setDisable(false);
+            // ONLY EDIT ONE USER AT A TIME
+            if (selectedEmployeeIDs.size() == 1) {
+                editButton.setDisable(false);
+            }
         }
     }
 
@@ -93,31 +109,27 @@ public class ManageEmployeesController implements Initializable {
         }
 
         System.out.println("selectedBookingIDs" + selectedEmployeeIDs);
-//        validateButtons();
+        validateButtons();
     }
     
     
-    public void handleAddButton(ActionEvent event) {
-        // OPEN ADD
-
+    public void handleAddButton(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("EmployeeAdd", event);
     }
     
     public void handleEditButton(ActionEvent event) throws IOException {
-        // OPEN EDIT
-
         // attach currently selected employee id to new scene
-//        SceneHelper.switchScene("AddEmployee", event, selectedEmployeeIDs.get(0));
+        SceneHelper.switchScene("EmployeeEdit", event, selectedEmployeeIDs.get(0));
 
     }
     
-    public void handleDeleteButton(ActionEvent event) {
+    public void handleDeleteButton(ActionEvent event) throws IOException {
         // delete selected IDS
         for (int employeeID : selectedEmployeeIDs) {
             manageEmployeesModel.removeEmployee(employeeID);
         }
-
+        sceneRefresh(event);
     }
-    
     
     public void handleBackButton(ActionEvent event) throws IOException {
         SceneHelper.switchScene("TableView", event);

@@ -83,6 +83,7 @@ public class ManageBookingsModel {
             e.printStackTrace();
         }
     }
+
     
     public void acceptBooking(int bookingID) {
 

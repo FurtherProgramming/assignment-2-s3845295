@@ -334,7 +334,6 @@ public class TableViewController implements Initializable {
     public void handleMenuItemLockdown(ActionEvent event) throws IOException {
         SceneHelper.newScene("Lockdown", event);
     }
-    
 
 
     // LOCKDOWN TABLE FOR SELECTED DATES

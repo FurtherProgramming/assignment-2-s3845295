@@ -25,7 +25,7 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
 
         super.populateBookingListView();
 
-        if (bookingArrayList.size() == 0) { statusLabel.setText("There are no bookings to accept/reject"); }
+        if (bookingArrayList.size() == 0) { statusLabel.setText("There are no bookings to edit or cancel."); }
         else { statusLabel.setText(""); }
 
     }
