@@ -71,7 +71,7 @@
          <bottom>
             <FlowPane alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="statusLabel" alignment="BOTTOM_RIGHT" text="Status">
+                  <Label fx:id="statusLabel" alignment="BOTTOM_RIGHT">
                      <padding>
                         <Insets bottom="10.0" />
                      </padding>

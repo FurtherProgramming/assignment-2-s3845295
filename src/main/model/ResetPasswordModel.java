@@ -12,8 +12,9 @@ public class ResetPasswordModel {
     
     public ResetPasswordModel() {
         connection = SQLConnection.connect();
-        if (connection == null)
+        if (connection == null) {
             System.exit(1);
+        }
     }
     
     public void resetPassword(User user, String password) {

@@ -16,8 +16,9 @@ public class TableViewModel {
     
     public TableViewModel() {
         connection = SQLConnection.connect();
-        if (connection == null)
+        if (connection == null) {
             System.exit(1);
+        }
     }
 
     // BUG: BookingID IS NULL

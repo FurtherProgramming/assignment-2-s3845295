@@ -17,8 +17,9 @@ public class ManageEmployeesModel {
     
     public ManageEmployeesModel() {
         connection = SQLConnection.connect();
-        if (connection == null)
+        if (connection == null) {
             System.exit(1);
+        }
     }
 
     public void populateEmployees(ArrayList<Object[]> employeeArrayList) throws SQLException {

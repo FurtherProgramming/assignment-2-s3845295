@@ -18,8 +18,9 @@ public class ManageBookingsModel {
     
     public ManageBookingsModel() {
         connection = SQLConnection.connect();
-        if (connection == null)
+        if (connection == null) {
             System.exit(1);
+        }
     }
     
     public void populateBookings(ArrayList<Object[]> bookingArrayList) throws SQLException {
