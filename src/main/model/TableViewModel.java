@@ -6,6 +6,8 @@ import main.object.User;
 import main.object.Table;
 import main.object.Table.Status;
 
+import java.util.ArrayList;
+
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -59,6 +61,46 @@ public class TableViewModel {
             preparedStatement.setInt(1, user.getLastBookingID());
             preparedStatement.setInt(2, user.getUserID());
             preparedStatement.executeUpdate();
+        }
+    }
+    
+    public void rejectUnconfirmedBookings(LocalDate currentDate) {
+        System.out.println("TableViewModel.rejectUnconfirmedBookings()");
+        
+        ArrayList<Integer> bookingIDs = new ArrayList<Integer>();
+
+        // ADD ANY UNCONFIRMED BOOKINGS FOR CURRENT DAY TO bookingIDs
+        String sqlQUERY = "SELECT * FROM Booking WHERE Date = ? AND Confirmed = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+            preparedStatement.setDate(1, Date.valueOf(currentDate));
+            preparedStatement.setInt(2, 0);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()) {
+                bookingIDs.add(resultSet.getInt(1));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        // DELETE ANY BOOKINGS IN bookingIDs
+        if (bookingIDs.size() > 0) {
+            String sqlDELETE =  "DELETE " +
+                    "FROM Booking " +
+                    "WHERE BookingID = ?";
+
+            for (int bookingID : bookingIDs) {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sqlDELETE)) {
+                    preparedStatement.setInt(1, bookingID);
+                    preparedStatement.executeUpdate();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     
@@ -200,10 +242,13 @@ public class TableViewModel {
             preparedStatement.setInt(1, user.getLastBookingID());
             preparedStatement.setDate(2, Date.valueOf(currentDate));
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            if (resultSet.getBoolean(5)) {
-                return true;
+
+            if (resultSet.next()) {
+                if (resultSet.getBoolean(5)) {
+                    return true;
+                }
             }
+
         }
         catch (SQLException e) {
             e.printStackTrace();

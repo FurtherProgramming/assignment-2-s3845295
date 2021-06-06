@@ -145,8 +145,10 @@ public class TableViewController implements Initializable {
         
         datePicker.setValue(CurrentDate.getCurrentDate());
         selectedDate = CurrentDate.getCurrentDate();
+
+        tableViewModel.rejectUnconfirmedBookings(CurrentDate.getCurrentDate());
+
         refresh();
-        
     }
 
     private void initialiseStatusColourMap() {
