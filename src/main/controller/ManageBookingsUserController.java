@@ -3,6 +3,7 @@ package main.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import main.helper.CurrentDate;
 import main.helper.SceneHelper;
 import main.object.User;
 
@@ -18,7 +19,7 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
     
     protected void refresh() {
 
-        try {manageBookingsModel.populateBookings(bookingArrayList, user);}
+        try {manageBookingsModel.populateBookings(bookingArrayList, user, CurrentDate.getCurrentDate());}
         catch (SQLException e) {e.printStackTrace();}
 
         System.out.println(bookingArrayList);
@@ -30,10 +31,23 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
 
     }
 
+    // OVERLOAD
+    protected void validateButtons() {
+        disableButtons(false);
+        if (selectedBookingIDs.size() == 0) {
+            disableButtons(true);
+        }
+
+        // ONLY EDIT BOOKING > 48 HOURS
+        editButton.setDisable(true);
+        if (manageBookingsModel.canUserEditBooking(selectedBookingIDs.get(0), CurrentDate.getCurrentDate())) {
+            editButton.setDisable(false);
+        }
+    }
+
     protected void disableButtons(boolean disable) {
         editButton.setDisable(disable);
         rejectButton.setDisable(disable);
-
     }
 
     protected void sceneRefresh(ActionEvent event) throws IOException {

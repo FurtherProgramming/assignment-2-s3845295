@@ -4,12 +4,14 @@ import main.SQLConnection;
 import main.helper.CurrentDate;
 import main.object.User;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ManageBookingsModel {
@@ -23,7 +25,7 @@ public class ManageBookingsModel {
         }
     }
     
-    public void populateBookings(ArrayList<Object[]> bookingArrayList) throws SQLException {
+    public void populateBookings(ArrayList<Object[]> bookingArrayList, LocalDate currentDate) throws SQLException {
         System.out.println("ManageBookingsModel.populateBookings()");
 
         String sqlQUERY =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username, Employee.ID " +
@@ -32,7 +34,7 @@ public class ManageBookingsModel {
                                     "WHERE Date >= ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
 
-            preparedStatement.setDate(1, Date.valueOf(CurrentDate.getCurrentDate()));
+            preparedStatement.setDate(1, Date.valueOf(currentDate));
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -54,7 +56,7 @@ public class ManageBookingsModel {
     }
 
     // OVERLOAD -- ONLY GET BOOKINGS FROM A SPECIFIC USER
-    public void populateBookings(ArrayList<Object[]> bookingArrayList, User user) throws SQLException {
+    public void populateBookings(ArrayList<Object[]> bookingArrayList, User user, LocalDate currentDate) throws SQLException {
         System.out.println("ManageBookingsModel.populateBookings(user)");
 
         String sqlQUERY =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username " +
@@ -63,7 +65,7 @@ public class ManageBookingsModel {
                                     "WHERE Date >= ? AND Employee.ID = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
-            preparedStatement.setDate(1, Date.valueOf(CurrentDate.getCurrentDate()));
+            preparedStatement.setDate(1, Date.valueOf(currentDate));
             preparedStatement.setInt(2, user.getUserID());
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -83,6 +85,31 @@ public class ManageBookingsModel {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    // IS BOOKING AT LEAST 48 HOURS AWAY
+    public Boolean canUserEditBooking(int bookingID, LocalDate currentDate) {
+        
+        String sqlQUERY =   "SELECT * " +
+                            "FROM Booking " +
+                            "WHERE BookingID = ? " +
+                            "AND Date >= ?";
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+            preparedStatement.setInt(1, bookingID);
+            preparedStatement.setDate(2, Date.valueOf(currentDate.plusDays(2)));
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     

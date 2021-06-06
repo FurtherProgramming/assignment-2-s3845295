@@ -257,10 +257,6 @@ public class TableViewModel {
         return false;
     }
     
-    public boolean isUserAdmin(User user) {
-        return user.isAdmin();
-    }
-    
     public void lockdownTable(Table table, LocalDate startDate, LocalDate endDate) throws SQLException {
         String sqlINSERT = "INSERT INTO Lockdown (TableID, StartDate, EndDate) VALUES (?,?,?)";
         

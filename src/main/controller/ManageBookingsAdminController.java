@@ -1,6 +1,7 @@
 package main.controller;
 
 import javafx.event.ActionEvent;
+import main.helper.CurrentDate;
 import main.helper.SceneHelper;
 
 import java.io.IOException;
@@ -10,7 +11,7 @@ public class ManageBookingsAdminController extends AbstractManageBookingsControl
 
     protected void refresh() {
 
-        try {manageBookingsModel.populateBookings(bookingArrayList);}
+        try {manageBookingsModel.populateBookings(bookingArrayList, CurrentDate.getCurrentDate());}
         catch (SQLException e) {e.printStackTrace();}
 
         System.out.println(bookingArrayList);

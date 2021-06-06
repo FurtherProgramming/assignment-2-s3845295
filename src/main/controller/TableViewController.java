@@ -138,7 +138,7 @@ public class TableViewController implements Initializable {
 
         setBookButtonDisable(true);
 
-        if (tableViewModel.isUserAdmin(user)) {
+        if (user.isAdmin()) {
             System.out.println("USERADMIN");
             adminEnable();
         }

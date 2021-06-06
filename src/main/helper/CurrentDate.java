@@ -9,8 +9,7 @@ public class CurrentDate {
     private CurrentDate() {
         currentDate = LocalDate.now();
     }
-    
-    
+
     public static LocalDate getCurrentDate() {
         if (currentDate == null) {
             CurrentDate instance = new CurrentDate();
