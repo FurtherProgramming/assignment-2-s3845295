@@ -192,21 +192,24 @@ public class TableViewModel {
         return userBooking;
     }
     
-    public LocalDate getDateOfBooking(int bookingID) {
-        String sqlQUERY = "SELECT * FROM Booking WHERE BookingID = ?";
+    public boolean canUserCheckIn(User user, LocalDate currentDate) {
         
-        LocalDate date = null;
+        String sqlQUERY = "SELECT * FROM Booking WHERE BookingID = ? AND Date = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
-            preparedStatement.setInt(1, bookingID);
+            preparedStatement.setInt(1, user.getLastBookingID());
+            preparedStatement.setDate(2, Date.valueOf(currentDate));
             ResultSet resultSet = preparedStatement.executeQuery();
-            date = LocalDate.parse(String.valueOf(resultSet.getDate(3)));
+            
+            if (resultSet.getBoolean(5)) {
+                return true;
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return date;
+        return false;
     }
     
     public boolean isUserAdmin(User user) {

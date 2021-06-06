@@ -280,9 +280,15 @@ public class TableViewController implements Initializable {
     // VALIDATE CHECK IN BUTTON
     private void validateCheckInButton() {
         if (selectedDate == CurrentDate.getCurrentDate()) {
-            if (tableViewModel.getDateOfBooking(user.getLastBookingID()).equals(selectedDate)) {
-                checkInButton.setDisable(false);
+            try {
+                if (tableViewModel.canUserCheckIn(user, CurrentDate.getCurrentDate())) {
+                    checkInButton.setDisable(false);
+                }
             }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
