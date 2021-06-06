@@ -171,7 +171,10 @@ public class TableViewModel {
         }
         
         // check if user has no existing booking.
-        String sqlQUERY = "SELECT * FROM Booking WHERE EmployeeID = ? AND Date >= ?";
+        String sqlQUERY =   "SELECT * " +
+                            "FROM Booking " +
+                            "WHERE EmployeeID = ? " +
+                            "AND Date >= ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
             preparedStatement.setInt(1,user.getUserID());
@@ -187,6 +190,23 @@ public class TableViewModel {
         }
         System.out.println("doesUserHaveBooking(): " + userBooking);
         return userBooking;
+    }
+    
+    public LocalDate getDateOfBooking(int bookingID) {
+        String sqlQUERY = "SELECT * FROM Booking WHERE BookingID = ?";
+        
+        LocalDate date = null;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
+            preparedStatement.setInt(1, bookingID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            date = LocalDate.parse(String.valueOf(resultSet.getDate(3)));
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return date;
     }
     
     public boolean isUserAdmin(User user) {

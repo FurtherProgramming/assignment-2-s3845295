@@ -61,6 +61,8 @@ public class TableViewController implements Initializable {
     private Button bookButton;
     @FXML
     private Button lockdownButton;
+    @FXML
+    private Button checkInButton;
 
     @FXML
     private Label table1Label;
@@ -189,6 +191,8 @@ public class TableViewController implements Initializable {
         System.out.println("selectedTable: " + selectedTable);
         validateSelectionButtons();
     }
+    
+    
 
     private void updateLabelText(Table table) {
         if (table.getStatus() != Status.AVAILABLE) {
@@ -213,10 +217,44 @@ public class TableViewController implements Initializable {
     private void validateSelectionButtons() {
         setBookButtonDisable(true);
         setLockdownButtonDisable(true);
+        checkInButton.setDisable(true);
         if (selectedTable != null) {
             validateBookButton();
             validateLockdownButton();
         }
+        validateCheckInButton();
+    }
+
+    // CHANGE SELECTED TABLE COLOUR, SET selectedTable to table
+    public void handleMouseClick(MouseEvent event) {
+        Node node = (Node)event.getSource();
+        Rectangle rectangle = (Rectangle)node;
+        Table table = rectangleTableMap.get(rectangle);
+
+        if (selectedTable == null) {
+            selectedTable = table;
+        }
+
+        table.getRectangle().setFill(colourSelected);
+
+        if (table != selectedTable) {
+            selectedTable.getRectangle().setFill(statusColourMap.get(selectedTable.getStatus()));
+        }
+        selectedTable = table;
+        validateBookButton();
+        validateLockdownButton();
+    }
+
+    // ANIMATE MOUSE HOVER
+    public void handleMouseEnter(MouseEvent event) {
+        Node node = (Node)event.getSource();
+        node.setScaleX(1.05);
+        node.setScaleY(1.05);
+    }
+    public void handleMouseExit(MouseEvent event) {
+        Node node = (Node)event.getSource();
+        node.setScaleX(1);
+        node.setScaleY(1);
     }
 
     // VALIDATE BOOK BUTTON
@@ -236,6 +274,15 @@ public class TableViewController implements Initializable {
     private void validateLockdownButton() {
         if (lockdownDate.getLockdownStartDate() != null && lockdownDate.getLockdownEndDate() != null) {
             setLockdownButtonDisable(false);
+        }
+    }
+
+    // VALIDATE CHECK IN BUTTON
+    private void validateCheckInButton() {
+        if (selectedDate == CurrentDate.getCurrentDate()) {
+            if (tableViewModel.getDateOfBooking(user.getLastBookingID()).equals(selectedDate)) {
+                checkInButton.setDisable(false);
+            }
         }
     }
 
@@ -276,36 +323,10 @@ public class TableViewController implements Initializable {
         refresh();
     }
 
-    // CHANGE SELECTED TABLE COLOUR, SET selectedTable to table
-    public void handleMouseClick(MouseEvent event) {
-        Node node = (Node)event.getSource();
-        Rectangle rectangle = (Rectangle)node;
-        Table table = rectangleTableMap.get(rectangle);
-
-        if (selectedTable == null) {
-            selectedTable = table;
-        }
-
-        table.getRectangle().setFill(colourSelected);
-
-        if (table != selectedTable) {
-            selectedTable.getRectangle().setFill(statusColourMap.get(selectedTable.getStatus()));
-        }
-        selectedTable = table;
-        validateBookButton();
-        validateLockdownButton();
-    }
-
-    // ANIMATE MOUSE HOVER
-    public void handleMouseEnter(MouseEvent event) {
-        Node node = (Node)event.getSource();
-        node.setScaleX(1.05);
-        node.setScaleY(1.05);
-    }
-    public void handleMouseExit(MouseEvent event) {
-        Node node = (Node)event.getSource();
-        node.setScaleX(1);
-        node.setScaleY(1);
+    
+    // CHECK IN
+    public void handleCheckInButton(ActionEvent event) {
+        statusLabel.setText("Checked in");
     }
 
     // LOG OUT OF APPLICATION

@@ -79,6 +79,7 @@
                   <FlowPane alignment="BOTTOM_RIGHT" columnHalignment="RIGHT" hgap="10.0" vgap="10.0">
                      <children>
                         <Button fx:id="lockdownButton" disable="true" mnemonicParsing="false" onAction="#handleLockdownButton" text="Lockdown" visible="false" />
+                        <Button fx:id="checkInButton" mnemonicParsing="false" onAction="#handleCheckInButton" text="Check In" />
                         <Button fx:id="bookButton" mnemonicParsing="false" onAction="#handleBookButton" text="Book" />
                         <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleLogOut" text="Log Out">
                            <FlowPane.margin>
