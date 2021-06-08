@@ -36,7 +36,16 @@ Password: ```test```
 ### Other operating systems
 Any way you're able to run a `.jar` file will suffice. Unfortunately I do not have the expertise to write instructions for other operating systems.
 
-## Screenshots
+## Example Program Functionality
+### Lockdown
+To set a lockdown restriction on tables, first select the `Manage Lockdown` menu item under the `Admin` menu.  
+![Lockdown Menu Item](https://github.com/FurtherProgramming/assignment-2-s3845295/blob/main/Images/lockdownMenuItem.png)
+
+Select the start and end dates for the lockdown period, then click the `OK` button.  
+![Lockdown Date Selection](https://github.com/FurtherProgramming/assignment-2-s3845295/blob/main/Images/lockdownDateSelection.png)  
+
+Once a lockdown period has been set, you're free to click on a table, then click the `Lockdown` button to disable bookings for the lockdown period.  
+![Lockdown Table](https://github.com/FurtherProgramming/assignment-2-s3845295/blob/main/Images/lockdownTable.png)
 
 ## Bugs
 - Currently, the admin is only able to lockdown tables that are available to be booked, i.e. aren't currently booked by a user. This is not intended functionality, but instead a limitation of how the controller for TableView was designed. 
