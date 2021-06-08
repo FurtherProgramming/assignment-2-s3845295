@@ -1,4 +1,6 @@
 screenshots
+*.html
+*.jnlp
 
 ##############################
 ## Java
