@@ -26,9 +26,17 @@ public class SceneHelper {
     }
 
     public static void switchScene(String sceneName, ActionEvent event) throws IOException {
+
+//        String directory = System.getProperty("user.dir");
+//        sceneName = directory + "/src/main/ui/" + sceneName +  ".fxml";
+
         sceneName = "../ui/" + sceneName +  ".fxml";
+//        sceneName = sceneName +  ".fxml";
+
+        System.out.println(sceneName);
 
         Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
+//        Parent root = FXMLLoader.load(SceneHelper.class.getClassLoader().getResource(sceneName));
         Scene scene = new Scene(root);
 
         // SWITCH primaryStage TO scene

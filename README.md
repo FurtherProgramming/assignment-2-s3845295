@@ -1,50 +1,54 @@
-# Readme
+# Hotdesk Application
 
-This README should be completed by the student
+###Author
+COSC2391 Further Programming - Semester 1 2021  
+Roman O'Brien - s3845295
 
-# Packaging
-The main class is Main.java
+## Scope
+This is a rudimentary application built in JavaFX which provides '[hot desking](https://en.wikipedia.org/wiki/Hot_desking)' functionality. It writes to a local database to ensure information is kept between sessions. The functions available to a regular user are:
+1. Login / Register / Reset Password
+2. Book table for a specific date
+3. Edit / Cancel booking
+4. Check in for booking (on the day)
 
-Packaging for classes:
- - main.controller
- - main.model
- - main.ui
-Packaging for test:
- - test.model
+Admin accounts have privileged access to functions such as:
+5. Approve / Reject booking requests
+4. Add / Edit / Delete users
+5. Setting a lockdown period for certain tables (to prevent booking during a time frame)
 
-## How to clone the project using intelliJIDEA and RUN the application
-1- Download IntelliJ IDEA Ultimate Version (You had to apply for student license)
 
-2- Open IntelliJ IDEA, select "File" from the top menu, select "New" and select "Project from Version Control"  
 
-3- Copy your Github classroom repository and paste into URL, click on "Clone".
- Your project will be cloned and open in your IntelliJ IDEA window.
- 
- However, you still need to add the SQLite jar file to your project so you can have access to your database. Follow next steps for adding the Jar file:
- 
-1- Download the SQLite JDBC jar file from week 7 Canvas module.
 
-2- In your project under project root, make a new directory called lib and move the jar file into lib folder
+## Running Program
+### Dependencies
+- Java 1.8
+- JavaFX
+- sqlite
 
-3- Open IntelliJ IDEA, click on "File", open "Project Structure"
+### Linux
 
-4- Under "Project Setting", select "Libraries"
+```git clone https://github.com/FurtherProgramming/assignment-2-s3845295```  
+```cd assignment-2-s3845295```  
+```java -jar hotdesk.jar```
 
-5- Click + button, choose Java, and navigate to your project folder, then Lib folder, choose "sqlite-jdbc-3.34.0.jar", and click on "open"
+The default admin account information is:  
+Username: ```admin```  
+Password: ```test```
 
-6- Click on Apply and then OK to close the window
+## Screenshots
 
-Now you are ready to Run the Application.
+## Bugs
+- Currently, the admin is only able to lockdown tables that are available to be booked, i.e. aren't currently booked by a user. This is not intended functionality, but instead a limitation of how the controller for TableView was designed. 
 
-Simply right click on Main.java and choose Run.
-Congratulations!
+## Packaging
+The main class is Main.java  
 
-Login info:
-
-Username: test
-
-Password: test
-
+__Packaging for classes__:
+- main.controller
+- main.helper
+- main.model
+- main.object  
+- main.ui
 
 ## Prepare other content
 
