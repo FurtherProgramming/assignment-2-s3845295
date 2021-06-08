@@ -29,12 +29,13 @@ Admin accounts have privileged access to functions such as:
 2. `cd assignment-2-s3845295`  
 3. `java -jar hotdesk.jar`
 
-The default admin account information is:  
-Username: ```admin```  
-Password: ```test```
+The default admin account for login is:  
+Username: `admin`  
+Password: `test`
 
 ### Other operating systems
-Any way you're able to run a `.jar` file will suffice. Unfortunately I do not have the expertise to write instructions for other operating systems.
+Any way you're able to run a `.jar` file will suffice.  
+Unfortunately I do not have the expertise to write instructions for other operating systems.
 
 ## Example Program Functionality
 ### Lockdown
@@ -50,36 +51,16 @@ Once a lockdown period has been set, you're free to click on a table, then click
 ## Bugs
 - Currently, the admin is only able to lockdown tables that are available to be booked, i.e. aren't currently booked by a user. This is not intended functionality, but instead a limitation of how the controller for TableView was designed. 
 
+## Limitations
+Lockdown periods are not able to be edited or deleted inside the software.
+
 ## Packaging
-The main class is Main.java  
+This project was built using the MVC software design pattern. The other classes in the structure are helpers which assist transfering information between JavaFXML scenes, or object classes.  
+The main class is `Main.java`  
 
 __Packaging for classes__:
-- main.controller
-- main.helper
-- main.model
-- main.object  
-- main.ui
-
-## Prepare other content
-
-Readme files are made for developers (including you), but also could be used for the final users.
-So while you are writing your readme files please consider a few things:
-
-1. What is about?
-    - Your name and student number and course name on the top
-    - Describe the content of your project or repository
-    - Explain things the users would have a hard time understanding right away
-2. What steps need to be taken?
-    - Any specific steps for running your application, what is the main class?
-    - Is there any requirements or dependencies?
-    - After the installation, how they compile or run the code?
-3. Execution examples
-    - You could provide examples of execution with code and screenshots
-    
-
-other things you could add:
-
-- Table of content
-- Test cases
-- Know bugs
-- Things that have not been working or complete
+- `main.controller`
+- `main.helper`
+- `main.model`
+- `main.object`  
+- `main.ui`
