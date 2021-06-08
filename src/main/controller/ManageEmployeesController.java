@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/*/
+Controller for ManageEmployees.fxml.
+Calls manageEmployeesModel.populateEmployees() to query the database and return relevant employee information as an ArrayList for formatting in the FXML ListView.
+ */
+
 public class ManageEmployeesController implements Initializable {
 
     private ManageEmployeesModel manageEmployeesModel = new ManageEmployeesModel();
@@ -31,27 +36,19 @@ public class ManageEmployeesController implements Initializable {
     @FXML
     private Label statusLabel;
     @FXML
-    private Button addButton;
-    @FXML
     private Button editButton;
     @FXML
     private Button deleteButton;
-    
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("ManageEmployeesController.initialize()");
         employeeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         refresh();
     }
     
     private void refresh() {
-
         try {manageEmployeesModel.populateEmployees(employeeArrayList);}
         catch (SQLException e) {e.printStackTrace();}
-
-        System.out.println(employeeArrayList);
 
         populateEmployeeListView();
 
@@ -62,9 +59,8 @@ public class ManageEmployeesController implements Initializable {
         validateButtons();
     }
 
+    // FORMATS employeeArrayList into strings for display in the FXMLListview
     protected void populateEmployeeListView() {
-        System.out.println("populateEmployeeListView()");
-
         String[] categories = {"Employee ID", "Name", "Username", "Password", "Role", "Secret Question", "Secret Answer", "Admin"};
         int listCount = 0;
 
@@ -92,25 +88,20 @@ public class ManageEmployeesController implements Initializable {
         }
     }
 
-    
     private void sceneRefresh(ActionEvent event) throws IOException {
         SceneHelper.switchScene("ManageEmployees", event);
     }
 
     public void handleListViewSelection(MouseEvent event) {
-        System.out.println("handleListViewSelection()");
-
         selectedEmployeeIDs.clear();
         ObservableList<Integer> selection = employeeListView.getSelectionModel().getSelectedIndices();
         for (Integer index : selection) {
             selectedEmployeeIDs.add(listViewIndexEmployeeIDMap.get(index));
         }
 
-        System.out.println("selectedBookingIDs" + selectedEmployeeIDs);
         validateButtons();
     }
-    
-    
+
     public void handleAddButton(ActionEvent event) throws IOException {
         SceneHelper.switchScene("EmployeeAdd", event);
     }

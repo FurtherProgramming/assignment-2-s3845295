@@ -26,8 +26,6 @@ public class ManageBookingsModel {
     }
     
     public void populateBookings(ArrayList<Object[]> bookingArrayList, LocalDate currentDate) throws SQLException {
-        System.out.println("ManageBookingsModel.populateBookings()");
-
         String sqlQUERY =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username, Employee.ID " +
                                     "FROM Booking " +
                                     "INNER JOIN Employee ON Booking.EmployeeID  = Employee.id " +
@@ -57,8 +55,6 @@ public class ManageBookingsModel {
 
     // OVERLOAD -- ONLY GET BOOKINGS FROM A SPECIFIC USER
     public void populateBookings(ArrayList<Object[]> bookingArrayList, User user, LocalDate currentDate) throws SQLException {
-        System.out.println("ManageBookingsModel.populateBookings(user)");
-
         String sqlQUERY =    "SELECT Booking.BookingID, Booking.TableID, Booking.Date, Booking.Confirmed, Employee.FirstName, Employee.LastName, Employee.username " +
                                     "FROM Booking " +
                                     "INNER JOIN Employee ON Booking.EmployeeID  = Employee.ID " +

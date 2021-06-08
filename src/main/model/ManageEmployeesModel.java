@@ -23,8 +23,6 @@ public class ManageEmployeesModel {
     }
 
     public void populateEmployees(ArrayList<Object[]> employeeArrayList) throws SQLException {
-        System.out.println("ManageEmployeesModel.populateEmployees()");
-
         String sqlQUERY =   "SELECT * " +
                             "FROM Employee";
                 
@@ -43,7 +41,6 @@ public class ManageEmployeesModel {
                 employeeInfo[5] = resultSet.getString(9);   // SECRET QUESTION
                 employeeInfo[6] = resultSet.getString(10);   // SECRET ANSWER
                 employeeInfo[7] = resultSet.getBoolean(6);  // ADMIN
-                System.out.println("ADMIN: " + employeeInfo[7]);
 
                 employeeArrayList.add(employeeInfo);
             }
@@ -74,8 +71,6 @@ public class ManageEmployeesModel {
             employeeInfo[5] = resultSet.getString(9);   // SECRET QUESTION
             employeeInfo[6] = resultSet.getString(10);   // SECRET ANSWER
             employeeInfo[7] = resultSet.getBoolean(6);  // ADMIN
-            System.out.println("ADMIN: " + employeeInfo[7]);
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -85,8 +80,6 @@ public class ManageEmployeesModel {
     }
 
     public void addEmployee(String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer) throws SQLException {
-        System.out.println("ManageEmployeesModel.addEmployee()");
-
         String sqlINSERT = "INSERT INTO Employee (FirstName, LastName, Role, Username, Password, SecretQuestion, SecretAnswer) VALUES (?,?,?,?,?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlINSERT)) {
@@ -100,10 +93,9 @@ public class ManageEmployeesModel {
             preparedStatement.executeUpdate();
         }
     }
+
     // OVERLOAD FOR SETTING ADMIN
     public void addEmployee(String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer, boolean admin) throws SQLException {
-        System.out.println("ManageEmployeesModel.addEmployee(OVERLOAD)");
-
         String sqlINSERT = "INSERT INTO Employee (FirstName, LastName, Username, Password, Admin, Role, SecretQuestion, SecretAnswer) VALUES (?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlINSERT)) {
@@ -120,8 +112,6 @@ public class ManageEmployeesModel {
     }
     
     public void editEmployee(int employeeID, String firstName, String lastName, String role, String username, String password, String secretQuestion, String secretAnswer, boolean admin) throws SQLException {
-        System.out.println("ManageEmployeesModel.editEmployee()");
-
         String sqlUPDATE =  "UPDATE Employee " +
                             "SET FirstName = ?, " +
                             "LastName = ?, " +

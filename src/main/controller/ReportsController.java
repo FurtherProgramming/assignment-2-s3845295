@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*/
+Controller for GenerateReports.fxml
+Calls the generate...() methods of reportsModel to write CSV files to ./Reports/
+ */
+
 public class ReportsController implements Initializable {
     
     ReportsModel reportsModel = new ReportsModel();

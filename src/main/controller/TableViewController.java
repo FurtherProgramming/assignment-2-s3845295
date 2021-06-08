@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
-
 import main.helper.LockdownDate;
 import main.object.Table;
 import main.object.Table.Status;
@@ -27,6 +26,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.HashMap;
+
+/*/
+Controller for TableView.fxml.
+This class is very large because of the design of the view to include all the main program functions on one 'main' scene.
+The initalize() and refresh() methods manage the colours and status texts of the tables' rectangles.
+Validation is also provided to ensure that users cannot book tables if they're not available.
+Additionally, the admin menu will only appear if logged in as an admin - adminEnable(). This also enables the Lockdown button.
+ */
 
 
 public class TableViewController implements Initializable {
@@ -139,7 +146,6 @@ public class TableViewController implements Initializable {
         setBookButtonDisable(true);
 
         if (user.isAdmin()) {
-            System.out.println("USERADMIN");
             adminEnable();
         }
         
@@ -190,11 +196,8 @@ public class TableViewController implements Initializable {
             updateRectangleDisable(table);
         }
 
-        System.out.println("selectedTable: " + selectedTable);
         validateSelectionButtons();
     }
-    
-    
 
     private void updateLabelText(Table table) {
         if (table.getStatus() != Status.AVAILABLE) {
@@ -261,11 +264,9 @@ public class TableViewController implements Initializable {
 
     // VALIDATE BOOK BUTTON
     private void validateBookButton() {
-        System.out.println("validateBookButton");
         try {
             // DISABLE BUTTON IF USER HAS A PREVIOUS BOOKING
             setBookButtonDisable(tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
-            System.out.println("setBookButtonDisable: " + tableViewModel.doesUserHaveBooking(user, CurrentDate.getCurrentDate()));
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -310,7 +311,6 @@ public class TableViewController implements Initializable {
 
     public void handleDatePick(ActionEvent event) {
         selectedDate = datePicker.getValue();
-        System.out.println("handleDatePick()");
         refresh();
         statusLabel.setText("");
     }
@@ -345,13 +345,13 @@ public class TableViewController implements Initializable {
     // USER MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemUserBookings(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("ManageUserBookings", event);
+        SceneHelper.switchScene("ManageBookingsUser", event);
     }
     
     // ADMIN MENU
     // OPEN BOOKINGS MANAGEMENT
     public void handleMenuItemAdminBookings(ActionEvent event) throws IOException {
-        SceneHelper.switchScene("ManageAdminBookings", event);
+        SceneHelper.switchScene("ManageBookingsAdmin", event);
     }
     
     // OPEN LOCKDOWN DATE SELECTION
@@ -371,9 +371,7 @@ public class TableViewController implements Initializable {
 
     // LOCKDOWN TABLE FOR SELECTED DATES
     public void handleLockdownButton(ActionEvent event) throws SQLException {
-        System.out.println("handleLockdownButton()");
         tableViewModel.lockdownTable(selectedTable, lockdownDate.getLockdownStartDate(), lockdownDate.getLockdownEndDate());
         refresh();
     }
-
 }

@@ -2,7 +2,6 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import main.helper.SceneHelper;
-
 import java.io.IOException;
 
 public class HomePageController {

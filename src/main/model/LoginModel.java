@@ -51,7 +51,6 @@ public class LoginModel {
         }
 
         if (login) {
-            System.out.println("SETTING USER");
             user.setUser(username);
         }
 

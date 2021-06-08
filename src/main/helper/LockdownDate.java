@@ -2,6 +2,10 @@ package main.helper;
 
 import java.time.LocalDate;
 
+/*/
+Helper Singleton class to store the lockdown date periods so that they can be access across scenes.
+ */
+
 public class LockdownDate {
     
     private static LockdownDate lockdownDate;
@@ -31,6 +35,5 @@ public class LockdownDate {
     public void setLockdownEndDate(LocalDate lockdownEndDate) {
         this.lockdownEndDate = lockdownEndDate;
     }
-
 
 }

@@ -6,15 +6,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import main.helper.SceneHelper;
 import main.model.ManageEmployeesModel;
 import main.object.User;
 import javafx.scene.control.CheckBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+/*/
+This abstract class provides polymorphism for the three scenes that modify user information in the database: Register User, Add User, and Edit User.
+This allows me to reuse the same FXML elements and save button validation (handleTextFieldKeyRelease() - ensures that you may only click save when all fields are populated) for all subclasses.
+All subclasses use the same model - manageEmployeesModel.
+ */
 
 abstract class AbstractEmployeeController implements Initializable {
 
@@ -47,7 +51,6 @@ abstract class AbstractEmployeeController implements Initializable {
 
     // ONLY MAKE SAVE BUTTON AVAILABLE TO PRESS WHEN ALL FIELDS ARE POPULATED
     public void handleTextFieldKeyRelease(KeyEvent event) {
-        System.out.println("AbstractTextFieldKeyRelease()");
         if (    !txtFirstName.getText().isEmpty() &&
                 !txtLastName.getText().isEmpty() &&
                 !txtRole.getText().isEmpty() &&
@@ -62,7 +65,5 @@ abstract class AbstractEmployeeController implements Initializable {
     public abstract void handleSaveButton(ActionEvent event) throws IOException;
     
     public abstract void handleBackButton(ActionEvent event) throws IOException;
-    
-
     
 }

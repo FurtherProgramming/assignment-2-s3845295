@@ -25,16 +25,11 @@ public class TableViewModel {
 
     // BUG: BookingID IS NULL
     public void bookTable(User user, int tableID, LocalDate date) throws SQLException {
-        System.out.println("employeeID: " + user.getUserID());
-        System.out.println("tableID: " + tableID);
-        System.out.println("date: " + date);
-
         String sqlINSERT = "INSERT INTO Booking (TableID, Date, EmployeeID) VALUES (?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlINSERT)) {
             preparedStatement.setInt(1, tableID);
             preparedStatement.setDate(2, Date.valueOf(date));
-            System.out.println("Date.valueOf(date): " + Date.valueOf(date));
             preparedStatement.setInt(3, user.getUserID());
             preparedStatement.executeUpdate();
         }
@@ -65,8 +60,6 @@ public class TableViewModel {
     }
     
     public void rejectUnconfirmedBookings(LocalDate currentDate) {
-        System.out.println("TableViewModel.rejectUnconfirmedBookings()");
-        
         ArrayList<Integer> bookingIDs = new ArrayList<Integer>();
 
         // ADD ANY UNCONFIRMED BOOKINGS FOR CURRENT DAY TO bookingIDs
@@ -230,12 +223,10 @@ public class TableViewModel {
 
 
         }
-        System.out.println("doesUserHaveBooking(): " + userBooking);
         return userBooking;
     }
     
     public boolean canUserCheckIn(User user, LocalDate currentDate) {
-        
         String sqlQUERY = "SELECT * FROM Booking WHERE BookingID = ? AND Date = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {

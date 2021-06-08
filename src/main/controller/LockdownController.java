@@ -15,12 +15,17 @@ import java.util.ResourceBundle;
 
 import main.helper.LockdownDate;
 
+/*/
+Controller for Lockdown.fxml.
+Validates that the two dates chosen for the lockdown are valid (end date is greater than start date), and then writes the two dates to the LockdownDate singleton class.
+ */
+
 public class LockdownController implements Initializable {
 
     LockdownDate lockdownDate = LockdownDate.getLockdownDateInstance();
 
     @FXML
-    Label status;
+    private Label status;
     @FXML
     private DatePicker startDatePicker;
     @FXML
@@ -30,7 +35,6 @@ public class LockdownController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
     
     public void refresh() {

@@ -2,6 +2,10 @@ package main.helper;
 
 import java.time.LocalDate;
 
+/*/
+Helper Singleton class to store the current date easily.
+ */
+
 public class CurrentDate {
 
     private static LocalDate currentDate;

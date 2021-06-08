@@ -7,11 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// SINGLETON USER
+/*/
+Singleton User object so that all classes have access to the user currently logged in to the system.
+Includes setUser() to be called when a user logs in to the system.
+ */
 public class User {
 
     private static User user;
-
 
     private int userID;
     private String firstName;
@@ -20,16 +22,11 @@ public class User {
     private String username;
     private String password;
     private String secretQuestion;
-
-
     private String secretAnswer;
-    
-    
     private boolean admin;
     private int lastBookingID;
 
     private User() {
-
     }
 
     public static User getUser(){
@@ -111,7 +108,6 @@ public class User {
         String sqlQUERY = "SELECT * FROM Employee WHERE username = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQUERY)) {
-
             preparedStatement.setString(1, username);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -127,9 +123,6 @@ public class User {
             setLastBookingID(resultSet.getInt(7));
             setSecretQuestion(resultSet.getString(9));
             setSecretAnswer(resultSet.getString(10));
-
-            System.out.println("username: " + resultSet.getString(5) + " admin " + resultSet.getBoolean(7));
-
         }
         catch (Exception e) {
             e.printStackTrace();

@@ -21,11 +21,14 @@ import javafx.scene.control.Button;
 
 import java.net.URL;
 
+/*/
+This abstract class provides a super class for the two scenes that manage user bookings. The subclasses are: ManageBookingsAdminController, and ManageBookingsUserController.
+They are separated like this because they have to display different information, despite calling upon similar methods and the same model class - ManageBookingsModel.
+The admin scene shows all bookings, while the user scene only shows bookings for the user.
+ */
+
 
 abstract class AbstractManageBookingsController implements Initializable {
-
-    // TODO
-    // auto reject any booking requests that haven't been accepted by current day
 
     protected ManageBookingsModel manageBookingsModel = new ManageBookingsModel();
     protected ArrayList<Integer> selectedBookingIDs = new ArrayList<Integer>();
@@ -44,7 +47,6 @@ abstract class AbstractManageBookingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("ManageBookingsController.initialize()");
         bookingListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         refresh();
     }
@@ -63,8 +65,6 @@ abstract class AbstractManageBookingsController implements Initializable {
     protected abstract void sceneRefresh(ActionEvent event) throws IOException;
 
     protected void populateBookingListView() {
-        System.out.println("populateBookingListView()");
-        
         String[] categories = {"Booking ID", "Date", "Table ID", "Name", "Username", "Accepted"};
         int listCount = 0;
 
@@ -76,26 +76,21 @@ abstract class AbstractManageBookingsController implements Initializable {
             bookingListView.getItems().add(listString);
             listViewIndexBookingIDMap.put(listCount, (Integer)booking[0]);
             listCount++;
-
         }
     }
 
     public void handleListViewSelection(MouseEvent event) {
-        System.out.println("handleListViewSelection()");
-
         selectedBookingIDs.clear();
         ObservableList<Integer> selection = bookingListView.getSelectionModel().getSelectedIndices();
         for (Integer index : selection) {
             selectedBookingIDs.add(listViewIndexBookingIDMap.get(index));
         }
 
-        System.out.println("selectedBookingIDs" + selectedBookingIDs);
         validateButtons();
     }
 
     public void handleRejectButton(ActionEvent event) throws IOException {
         for (Integer bookingID : selectedBookingIDs) {
-            System.out.println("REJECTING bookingID: " + bookingID);
             manageBookingsModel.rejectBooking(bookingID);
         }
         sceneRefresh(event);

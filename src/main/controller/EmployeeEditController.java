@@ -3,9 +3,14 @@ package main.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import main.helper.SceneHelper;
-
 import java.io.IOException;
 import java.sql.SQLException;
+
+/*/
+This is the controller for the EmployeeEdit.fxml view.
+To provide EmployeeEdit.fxml with the employee's information to edit, the MouseEvent handleMouseEnter() grabs the user data from the primary stage (attached in ManageEmployeesController).
+handleSaveButton() overrides the abstract method and calls the editEmployee() method of the model, which executes an update statement upon the database.
+ */
 
 public class EmployeeEditController extends AbstractEmployeeController {
     
@@ -25,7 +30,6 @@ public class EmployeeEditController extends AbstractEmployeeController {
             txtPassword.setText((String)employeeInfo[3]);
             txtSecretQuestion.setText((String)employeeInfo[5]);
             txtSecretAnswer.setText((String)employeeInfo[6]);
-            System.out.println((boolean)employeeInfo[7]);
             boxAdmin.setSelected((boolean)employeeInfo[7]);
 
         }

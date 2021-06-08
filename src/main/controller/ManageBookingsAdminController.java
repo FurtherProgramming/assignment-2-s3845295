@@ -7,14 +7,16 @@ import main.helper.SceneHelper;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/*/
+Controller for ManageBookingsAdmin.fxml
+ */
+
 public class ManageBookingsAdminController extends AbstractManageBookingsController {
 
     protected void refresh() {
 
         try {manageBookingsModel.populateBookings(bookingArrayList, CurrentDate.getCurrentDate());}
         catch (SQLException e) {e.printStackTrace();}
-
-        System.out.println(bookingArrayList);
 
         populateBookingListView();
 

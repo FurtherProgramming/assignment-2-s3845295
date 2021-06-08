@@ -11,6 +11,12 @@ import java.util.Objects;
 
 import javafx.scene.Node;
 
+/*/
+Helper class to manage switching scenes. Static methods may be called with the name of the requested scene, and SceneHelper will switch/ create a new scene.
+Allows for the repeated reuse of code.
+Methods are overloaded to include UserData if required to be attached to the stage.
+ */
+
 public class SceneHelper {
 
     private static Stage primaryStage;
@@ -20,7 +26,6 @@ public class SceneHelper {
     }
 
     public static void switchScene(String sceneName, ActionEvent event) throws IOException {
-
         sceneName = "../ui/" + sceneName +  ".fxml";
 
         Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
@@ -37,8 +42,6 @@ public class SceneHelper {
     public static void switchScene(String sceneName, ActionEvent event, Object userData) throws IOException {
         switchScene(sceneName, event);
         primaryStage.setUserData(userData);
-        System.out.println(primaryStage);
-        System.out.println("USERDATA ATTACHED TO SCENE: " + primaryStage.getUserData());
     }
 
     
@@ -72,15 +75,8 @@ public class SceneHelper {
         Stage stage = ((Stage)((Node)event.getSource()).getScene().getWindow());
         stage.close();
     }
-    
-//    public static Object getStageUserData(ActionEvent event) {
-//        return ((Node)event.getSource()).getScene().getUserData();
-//    }
 
     public static Object getPrimaryStageUserData() {
-        System.out.println("SceneHelper.getPrimaryStageUserData()");
-        System.out.println(primaryStage);
-        System.out.println(primaryStage.getUserData());
         return primaryStage.getUserData();
     }
 }

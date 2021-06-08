@@ -10,6 +10,11 @@ import main.object.User;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/*/
+Controller for ManageBookingsUser.
+Calls the overloaded method manageBookingsModel.populateBookings(), to only include bookings from a single user (the one logged in)
+ */
+
 public class ManageBookingsUserController extends AbstractManageBookingsController {
     
     User user = User.getUser();
@@ -21,8 +26,6 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
 
         try {manageBookingsModel.populateBookings(bookingArrayList, user, CurrentDate.getCurrentDate());}
         catch (SQLException e) {e.printStackTrace();}
-
-        System.out.println(bookingArrayList);
 
         super.populateBookingListView();
 

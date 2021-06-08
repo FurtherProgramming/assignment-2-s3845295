@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane focusTraversable="true" prefHeight="538.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.TableViewController">
+<AnchorPane focusTraversable="true" prefHeight="571.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.TableViewController">
    <children>
-      <TitledPane animated="false" collapsible="false" prefHeight="538.0" prefWidth="460.0" text="Table View">
+      <TitledPane animated="false" collapsible="false" prefHeight="571.0" prefWidth="460.0" text="Table View">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>

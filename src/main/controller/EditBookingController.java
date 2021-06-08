@@ -2,16 +2,17 @@ package main.controller;
 
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import main.helper.SceneHelper;
 import main.model.ManageBookingsModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/*/
+This class is the controller for the EditBooking.fxml view, and provides a confirmation dialogue with the user as to whether they want to edit their booking or not.
+Editing a booking deletes it from the database so that the user may book another one.
+ */
 
 public class EditBookingController implements Initializable {
 

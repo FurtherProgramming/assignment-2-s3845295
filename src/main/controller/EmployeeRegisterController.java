@@ -2,11 +2,13 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import main.helper.SceneHelper;
-
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+
+/*/
+This is the controller for the EmployeeRegister.fxml view.
+handleSaveButton() overrides the abstract method and calls the addEmployee() method of the model, executing an SQL INSERT.
+ */
 
 public class EmployeeRegisterController extends AbstractEmployeeController {
 

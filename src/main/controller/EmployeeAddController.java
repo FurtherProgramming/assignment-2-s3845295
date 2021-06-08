@@ -2,11 +2,12 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import main.helper.SceneHelper;
-
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+
+/*/
+This is the controller for the EmployeeAdd.fxml view. It calls manageEmployeesModel.addEmployee() to add a new employee to the database.
+ */
 
 public class EmployeeAddController extends AbstractEmployeeController {
 

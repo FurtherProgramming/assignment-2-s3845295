@@ -16,6 +16,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*/
+Controller for ResetPassword.fxml.
+Asks user for the answer to their secret question, and generates a new (optional) random alphanumeric password for the user.
+Reset Password button may only be clicked if there is an answer in the FXML TextField.
+ */
+
 public class ResetPasswordController implements Initializable {
     
     User user = User.getUser();

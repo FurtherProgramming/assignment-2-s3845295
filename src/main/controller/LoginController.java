@@ -30,8 +30,6 @@ public class LoginController implements Initializable {
     @FXML
     private Button forgotButton;
 
-
-    // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         forgotButton.setDisable(true);
@@ -44,12 +42,11 @@ public class LoginController implements Initializable {
 
         try {
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())) {
-
                 statusLabel.setText("Logged in successfully");
-
                 // SWITCH TO TABLEVIEW SCENE
                 SceneHelper.switchScene("TableView", event);
-            } else {
+            }
+            else {
                 statusLabel.setText("username and password is incorrect");
             }
         } catch (SQLException | IOException e) {
