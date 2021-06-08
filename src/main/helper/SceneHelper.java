@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 import javafx.scene.Node;
+import main.Main;
 
 /*/
 Helper class to manage switching scenes. Static methods may be called with the name of the requested scene, and SceneHelper will switch/ create a new scene.
@@ -27,16 +28,10 @@ public class SceneHelper {
 
     public static void switchScene(String sceneName, ActionEvent event) throws IOException {
 
-//        String directory = System.getProperty("user.dir");
-//        sceneName = directory + "/src/main/ui/" + sceneName +  ".fxml";
+        sceneName = "ui/" + sceneName +  ".fxml";
 
-        sceneName = "../ui/" + sceneName +  ".fxml";
-//        sceneName = sceneName +  ".fxml";
+        Parent root = FXMLLoader.load(Main.class.getResource(sceneName));
 
-        System.out.println(sceneName);
-
-        Parent root = FXMLLoader.load(SceneHelper.class.getResource(sceneName));
-//        Parent root = FXMLLoader.load(SceneHelper.class.getClassLoader().getResource(sceneName));
         Scene scene = new Scene(root);
 
         // SWITCH primaryStage TO scene
