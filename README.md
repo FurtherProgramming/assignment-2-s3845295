@@ -55,7 +55,7 @@ Once a lockdown period has been set, you're free to click on a table, then click
 Lockdown periods are not able to be edited or deleted inside the software.
 
 ## Packaging
-This project was built using the MVC software design pattern. The other classes in the structure are helpers which assist transfering information between JavaFXML scenes, or object classes.  
+This project was built using the MVC software design pattern. The other classes in the structure are helpers which assist in transfering information between JavaFXML scenes, or object classes.  
 The main class is `Main.java`  
 
 __Packaging for classes__:
