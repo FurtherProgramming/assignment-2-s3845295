@@ -17,6 +17,7 @@ Admin accounts have privileged access to functions such as:
 5. Setting a lockdown period for certain tables (to prevent booking during a time frame)
 
 ## Running Program
+[Hotdesk Homepage](Images/homepage.png)
 ### Dependencies
 - Java 1.8
 - JavaFX 
@@ -73,12 +74,3 @@ other things you could add:
 - Test cases
 - Know bugs
 - Things that have not been working or complete
-
-### References and tutorials for Readme (Markdown)
-- **IntelliJ IDEA MarkDown guide**. jetbrains.com/help/idea/markdown.html
-- **Choose an open source license**. Github. Available at: https://choosealicense.com/
-- **Getting started with writing and formatting on Github**. Github. Available at: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/
-- **Markdown here cheatsheet**. Markdown Here Wiki. Available at: https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
-- **Markdown quick reference**. Wordpress. Available at: https://en.support.wordpress.com/markdown-quick-reference/
-- **readme-template**. Dan Bader. Github. Available at: https://github.com/dbader/readme-template
-- Writing READMEs. **Udacity**. Available at: https://classroom.udacity.com/courses/ud777/
