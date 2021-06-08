@@ -18,7 +18,12 @@
                         <TextField fx:id="txtPassword" onKeyReleased="#handleTextFieldKeyRelease" promptText="Password" />
                         <TextField fx:id="txtSecretQuestion" onKeyReleased="#handleTextFieldKeyRelease" promptText="Secret Question" />
                         <TextField fx:id="txtSecretAnswer" onKeyReleased="#handleTextFieldKeyRelease" promptText="Answer" />
-                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#save" text="Save" />
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                          <buttons>
+                              <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveButton" text="Save" />
+                            <Button mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+                          </buttons>
+                        </ButtonBar>
                      </children>
                   </FlowPane>
                </children>

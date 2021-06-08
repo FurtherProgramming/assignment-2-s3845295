@@ -4,47 +4,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LockdownController">
+<AnchorPane prefHeight="152.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LockdownController">
    <children>
-      <BorderPane prefHeight="149.0" prefWidth="463.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <FlowPane alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="463.0" BorderPane.alignment="CENTER">
-               <children>
-                  <DatePicker fx:id="startDatePicker" onAction="#handleDatePick" promptText="Start Date">
-                     <FlowPane.margin>
-                        <Insets bottom="10.0" left="20.0" right="10.0" />
-                     </FlowPane.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="endDatePicker" onAction="#handleDatePick" promptText="End Date">
-                     <FlowPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="20.0" />
-                     </FlowPane.margin>
-                  </DatePicker>
-                  <Label fx:id="status">
-                     <FlowPane.margin>
-                        <Insets bottom="20.0" right="10.0" top="10.0" />
-                     </FlowPane.margin>
-                  </Label>
-                  <Button fx:id="OKButton" disable="true" mnemonicParsing="false" onAction="#handleOKButton" text="OK">
-                     <FlowPane.margin>
-                        <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
-                     </FlowPane.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel">
-                     <FlowPane.margin>
-                        <Insets bottom="20.0" right="20.0" top="10.0" />
-                     </FlowPane.margin>
-                  </Button>
-               </children>
-            </FlowPane>
-         </center>
-         <top>
-            <Label alignment="TOP_LEFT" text="Select Lockdown Dates" BorderPane.alignment="TOP_LEFT">
-               <BorderPane.margin>
-                  <Insets left="30.0" right="20.0" top="20.0" />
-               </BorderPane.margin>
-            </Label>
-         </top>
-      </BorderPane>
+      <TitledPane collapsible="false" prefHeight="161.0" prefWidth="482.0" text="Select Lockdown Dates">
+         <content>
+            <BorderPane prefHeight="142.0" prefWidth="480.0">
+               <center>
+                  <FlowPane alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="460.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <DatePicker fx:id="startDatePicker" onAction="#handleDatePick" promptText="Start Date">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" left="20.0" right="10.0" />
+                           </FlowPane.margin>
+                        </DatePicker>
+                        <DatePicker fx:id="endDatePicker" onAction="#handleDatePick" promptText="End Date">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="20.0" />
+                           </FlowPane.margin>
+                        </DatePicker>
+                        <Label fx:id="status">
+                           <FlowPane.margin>
+                              <Insets bottom="20.0" right="10.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Button fx:id="OKButton" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#handleOKButton" text="OK">
+                           <FlowPane.margin>
+                              <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel">
+                           <FlowPane.margin>
+                              <Insets bottom="20.0" right="20.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Button>
+                     </children>
+                  </FlowPane>
+               </center>
+            </BorderPane>
+         </content>
+      </TitledPane>
+      <Label alignment="TOP_LEFT" />
    </children>
 </AnchorPane>

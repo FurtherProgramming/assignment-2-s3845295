@@ -6,18 +6,19 @@ import main.helper.SceneHelper;
 import java.io.IOException;
 
 public class HomePageController {
-    
-//    SceneController sceneController = new SceneController();
 
-    public void loginButton(ActionEvent event) throws IOException {
+    public void handleLoginButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO LOGIN.FXML
         SceneHelper.switchScene("Login", event);
     }
     
-    public void registerButton(ActionEvent event) throws IOException {
+    public void handleRegisterButton(ActionEvent event) throws IOException {
         // SWITCH SCENE TO REGISTER.FXML
         SceneHelper.switchScene("EmployeeRegister", event);
     }
-
+    
+    public void handleQuitButton(ActionEvent event) {
+        SceneHelper.close(event);
+    }
 
 }

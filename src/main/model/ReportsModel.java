@@ -27,6 +27,7 @@ public class ReportsModel {
     
     private long getNumberOfReports(String reportType) {
         try {
+            // used a stream AND a lambda expression :)
             return  Stream.of(directory.listFiles())
                     .filter(f -> f.getName().contains(reportType))
                     .count();

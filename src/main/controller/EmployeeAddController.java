@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 public class EmployeeAddController extends AbstractEmployeeController {
 
-    public void save(ActionEvent event) throws IOException {
+    public void handleSaveButton(ActionEvent event) throws IOException {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String role = txtRole.getText();
@@ -29,5 +29,9 @@ public class EmployeeAddController extends AbstractEmployeeController {
         finally {
             SceneHelper.switchScene("ManageEmployees", event);
         }
+    }
+    
+    public void handleBackButton(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("ManageEmployees", event);
     }
 }

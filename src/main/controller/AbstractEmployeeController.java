@@ -59,7 +59,9 @@ abstract class AbstractEmployeeController implements Initializable {
         }
     }
 
-    public abstract void save(ActionEvent event) throws IOException;
+    public abstract void handleSaveButton(ActionEvent event) throws IOException;
+    
+    public abstract void handleBackButton(ActionEvent event) throws IOException;
     
 
     

@@ -22,7 +22,7 @@ public class LoginController implements Initializable {
 
     public LoginModel loginModel = new LoginModel();
     @FXML
-    private Label isConnected;
+    private Label statusLabel;
     @FXML
     private TextField txtUsername;
     @FXML
@@ -35,51 +35,43 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         forgotButton.setDisable(true);
-        if (loginModel.isDbConnected()) {
-            isConnected.setText("Connected");
-        }
-        else {
-            isConnected.setText("Not Connected");
-        }
-
     }
+
     /* login Action method
        check if user input is the same as database.
      */
-    public void Login(ActionEvent event){
+    public void Login(ActionEvent event) {
 
         try {
-            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())) {
+            if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())) {
 
-                isConnected.setText("Logged in successfully");
+                statusLabel.setText("Logged in successfully");
 
                 // SWITCH TO TABLEVIEW SCENE
                 SceneHelper.switchScene("TableView", event);
-            }
-            else {
-                isConnected.setText("username and password is incorrect");
+            } else {
+                statusLabel.setText("username and password is incorrect");
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
-    
+
+    // VALIDATE FORGOT PASSWORD BUTTON -- ONLY ENABLE WHEN USERNAME IS ENTERED
     public void handleKeyRelease(KeyEvent event) {
-        if (!txtUsername.getText().isEmpty()) {
-            forgotButton.setDisable(false);
-        }
-        else {
-            forgotButton.setDisable(true);
-        }
+        forgotButton.setDisable(txtUsername.getText().isEmpty());
     }
-    
+
     public void handleForgotPassword(ActionEvent event) throws IOException, SQLException {
         System.out.println("handleForgotPassword()");
         User user = User.getUser();
-//        user.setUsername(txtUsername.getText());
         user.setUser(txtUsername.getText());
         SceneHelper.switchScene("ResetPassword", event);
     }
+    
+    public void handleBackButton(ActionEvent event) throws IOException {
+        SceneHelper.switchScene("Homepage", event);
+}
 
 
 
