@@ -17,7 +17,7 @@ Admin accounts have privileged access to functions such as:
 5. Setting a lockdown period for certain tables (to prevent booking during a time frame)
 
 ## Running Program
-![Hotdesk Homepage](https://github.com/FurtherProgramming/assignment-2-s3845295/Images/homepage.png)
+![Hotdesk Homepage](https://github.com/FurtherProgramming/assignment-2-s3845295/blob/main/Images/homepage.png)
 ### Dependencies
 - Java 1.8
 - JavaFX 
