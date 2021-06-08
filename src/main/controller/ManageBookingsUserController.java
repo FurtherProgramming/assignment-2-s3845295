@@ -39,12 +39,14 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
         disableButtons(false);
         if (selectedBookingIDs.size() == 0) {
             disableButtons(true);
-        }
 
-        // ONLY EDIT BOOKING > 48 HOURS
-        editButton.setDisable(true);
-        if (manageBookingsModel.canUserEditBooking(selectedBookingIDs.get(0), CurrentDate.getCurrentDate())) {
-            editButton.setDisable(false);
+        }
+        else {
+            // ONLY EDIT BOOKING > 48 HOURS
+            editButton.setDisable(true);
+            if (manageBookingsModel.canUserEditBooking(selectedBookingIDs.get(0), CurrentDate.getCurrentDate())) {
+                editButton.setDisable(false);
+            }
         }
     }
 
