@@ -14,7 +14,6 @@ Controller for ManageBookingsAdmin.fxml
 public class ManageBookingsAdminController extends AbstractManageBookingsController {
 
     protected void refresh() {
-
         try {manageBookingsModel.populateBookings(bookingArrayList, CurrentDate.getCurrentDate());}
         catch (SQLException e) {e.printStackTrace();}
 

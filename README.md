@@ -1,11 +1,11 @@
 # Hotdesk Application
 
-###Author
+### Author
 COSC2391 Further Programming - Semester 1 2021  
 Roman O'Brien - s3845295
 
 ## Scope
-This is a rudimentary application built in JavaFX which provides '[hot desking](https://en.wikipedia.org/wiki/Hot_desking)' functionality. It writes to a local database to ensure information is kept between sessions. The functions available to a regular user are:
+This is a rudimentary application built in JavaFX which provides [hot desking](https://en.wikipedia.org/wiki/Hot_desking) functionality. It writes to a local database to ensure information is kept between sessions. The functions available to a regular user are:
 1. Login / Register / Reset Password
 2. Book table for a specific date
 3. Edit / Cancel booking
@@ -16,24 +16,24 @@ Admin accounts have privileged access to functions such as:
 4. Add / Edit / Delete users
 5. Setting a lockdown period for certain tables (to prevent booking during a time frame)
 
-
-
-
 ## Running Program
 ### Dependencies
 - Java 1.8
-- JavaFX
+- JavaFX 
 - sqlite
 
 ### Linux
 
-```git clone https://github.com/FurtherProgramming/assignment-2-s3845295```  
-```cd assignment-2-s3845295```  
-```java -jar hotdesk.jar```
+1. `git clone https://github.com/FurtherProgramming/assignment-2-s3845295`   
+2. `cd assignment-2-s3845295`  
+3. `java -jar hotdesk.jar`
 
 The default admin account information is:  
 Username: ```admin```  
 Password: ```test```
+
+### Other operating systems
+Any way you're able to run a `.jar` file will suffice. Unfortunately I do not have the expertise to write instructions for other operating systems.
 
 ## Screenshots
 
@@ -73,8 +73,6 @@ other things you could add:
 - Test cases
 - Know bugs
 - Things that have not been working or complete
-
-
 
 ### References and tutorials for Readme (Markdown)
 - **IntelliJ IDEA MarkDown guide**. jetbrains.com/help/idea/markdown.html

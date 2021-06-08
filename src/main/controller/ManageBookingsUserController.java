@@ -23,11 +23,10 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
     protected Button editButton;
     
     protected void refresh() {
-
         try {manageBookingsModel.populateBookings(bookingArrayList, user, CurrentDate.getCurrentDate());}
         catch (SQLException e) {e.printStackTrace();}
 
-        super.populateBookingListView();
+        populateBookingListView();
 
         if (bookingArrayList.size() == 0) { statusLabel.setText("There are no bookings to edit or cancel."); }
         else { statusLabel.setText(""); }
@@ -39,7 +38,6 @@ public class ManageBookingsUserController extends AbstractManageBookingsControll
         disableButtons(false);
         if (selectedBookingIDs.size() == 0) {
             disableButtons(true);
-
         }
         else {
             // ONLY EDIT BOOKING > 48 HOURS
